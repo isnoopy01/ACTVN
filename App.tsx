@@ -1,118 +1,113 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
 
-import React from 'react';
-import type {PropsWithChildren} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+import React, {useState} from 'react';
+import { View, Text, StyleSheet, Image, } from 'react-native'
+import AppIntroSlider from 'react-native-app-intro-slider';
+import { COLORS, sizes } from './src/constants/theme';
+import MyStack from './src/router/router';
+import MyTabs from './src/router/tabs';
+import { NavigationContainer } from '@react-navigation/native';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
-
-function Section({children, title}: SectionProps): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-}
-
-function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
-  return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
+const slides = [
+  {
+    id: 1,
+    title: 'Kết nối tri thức, Tra cứu thuận tiện',
+    description: 'Tìm kiếm thông tin giảng viên, sinh viên một cách nhanh chóng và hiệu quả!',
+    image: require('./src/img/slides1.png')
+  },
+  {
+    id: 2,
+    title: 'Đồng hành học vụ, liên tục hiệu quả',
+    description: 'Quản lý, thông báo lịch dạy, lịch học giúp bạn chủ động về thời gian mang lại trải nghiệm học tập hiệu quả!',
+    image: require('./src/img/slides2.png')
+  },
+  {
+    id: 3,
+    title: 'Thắp sáng ý tưởng, trò chuyện nhanh chóng',
+    description: 'Gửi tin nhắn trực tuyến, kết nối sinh viên và giảng viên.',
+    image: require('./src/img/slides3.png')
+  },
+  {
+    id: 4,
+    title: 'Nắm bắt thông tin, mở rộng kiến thức',
+    description: 'Dễ dàng nắm bắt tin tức, thông tin nổi bật của Học viện, tạo môi trường học tập trở nên đa dạng và thú vị.',
+    image: require('./src/img/slides4.png')
+  }
+]
+export default function App() {
+  const [showHomePage, setShowHomePage] = useState(false);
+  
+  const buttonLabel = (label: String) => {
+    return (
+      <View style={{
+        padding: 12
+      }}>
+        <Text style ={{
+          color: COLORS.title,
+          fontWeight: '500',
+          fontSize: sizes.h4
+        }}>
+          {label}
+        </Text>
+      </View>
+    )
+  }
+  if(!showHomePage) {
+    return (
+      <AppIntroSlider
+        data = {slides}
+        renderItem={({item}) => {
+          return (
+            <View style = {{
+              flex: 1,
+              padding: 34,
+              paddingTop: 70,
+            }}>
+              <Image
+                source = {item.image}
+                style={{
+                  width: sizes.width - 80,
+                  height: 400,
+                  alignItems: 'center',
+                }}
+                resizeMode="contain"
+              />
+              <Text style = {{
+                textAlign: 'left',
+                fontWeight: 'bold',
+                color: COLORS.title,
+                fontSize: sizes.h1
+              }}>
+                {item.title}
+              </Text>
+              <Text style = {{
+                textAlign: 'left',
+                paddingTop: 15,
+                color: COLORS.title
+              }}>
+                {item.description}
+              </Text>
+            </View>
+          )
+        }}
+        activeDotStyle={{
+          backgroundColor: COLORS.primary,
+          width: 30,
+          alignItems: 'stretch'
+        }}
+        showSkipButton
+        renderNextButton={() => buttonLabel("Tiếp theo")}
+        renderSkipButton={() => buttonLabel("Skip")}
+        renderDoneButton={() => buttonLabel("Bắt đầu")}
+        onDone={() => {
+          setShowHomePage(true);
+        }}
       />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+    )
+  }
+  return (
+    <NavigationContainer>
+      <MyTabs />
+    </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
-
-export default App;
