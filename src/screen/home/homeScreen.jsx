@@ -1,9 +1,12 @@
-import {Text, View, Image} from 'react-native';
+import {Text, View, Image, TouchableOpacity} from 'react-native';
 import React from 'react';
 import styles from './styles';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import SearchInfo from './searchInfo/searchInfo';
 
-const HomeScreen = () => {
+const HomeScreen = ({navigation}) => {
   return (
     <SafeAreaView
       style={{
@@ -45,13 +48,15 @@ const HomeScreen = () => {
         </View>
         <View>
           <View style={styles.items}>
-            <View style={styles.item}>
+            <TouchableOpacity onPress={() => navigation.navigate('SearchInfo')}>
+              <View style={styles.item}>
               <Image
                 style={styles.itemImage}
                 source={require('../../img/tra-cuu-thong-tin.png')}
               />
               <Text style={styles.textItem}>Tra cứu thông tin</Text>
-            </View>
+              </View>
+            </TouchableOpacity >
             <View style={styles.item}>
               <Image
                 style={styles.itemImage}
@@ -112,6 +117,7 @@ const HomeScreen = () => {
               />
               <Text style={styles.textItem}>Câu hỏi</Text>
             </View>
+
           </View>
           
         </View>
