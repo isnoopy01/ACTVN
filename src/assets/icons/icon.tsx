@@ -1,0 +1,15 @@
+export const Icon = {
+    Home: require('./home.png'),
+    Home1: require('./home1.png'),
+    Schedule: require('./schedule.png'),
+    Schedule1: require('./schedule1.png'),
+    News: require('./news.png'),
+    News1: require('./news1.png'),
+    Chat: require('./chat.png'),
+    Chat1: require('./chat1.png'),
+    Setting: require('./setting.png'),
+    Setting1: require('./setting1.png'),
+    Filter: require('./filters.png'),
+    FilterWhite: require('./filters-white.png'),
+    Bell: require('./bell.png'),
+}

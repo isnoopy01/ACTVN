@@ -1,6 +1,6 @@
-import SignIn from "../screen/signIn/signIn";
-import SignInAnother from "../screen/signUp/signInAnother";
-import ForgotPwd from "../screen/forgotPwd/forgotPwd";
+import SignIn from "../screens/authentication/signIn/signIn";
+import SignInAnother from "../screens/authentication/signUp/signInAnother";
+import ForgotPwd from "../screens/authentication/forgotPwd/forgotPwd";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 

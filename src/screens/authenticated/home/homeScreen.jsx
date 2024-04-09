@@ -2,10 +2,10 @@ import {Text, View, Image, TouchableOpacity} from 'react-native';
 import React from 'react';
 import styles from './styles';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import SearchInfo from './searchInfo/searchInfo';
-
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import { images } from '../../../assets/images/image';
+import { Icon } from '../../../assets/icons/icon';
 const HomeScreen = ({navigation}) => {
   return (
     <SafeAreaView
@@ -17,7 +17,7 @@ const HomeScreen = ({navigation}) => {
         <View style={styles.header1}>
           <Image
             style={{width: 40, height: 40}}
-            source={require('../../img/avatar.png')}
+            source={images.Avatar}
           />
           <View style={styles.info}>
             <View style={styles.names}>
@@ -31,7 +31,7 @@ const HomeScreen = ({navigation}) => {
         <View>
           <Image
             style={{width: 30, height: 30}}
-            source={require('../../img/bell.png')}
+            source={Icon.Bell}
           />
         </View>
       </View>
@@ -40,7 +40,7 @@ const HomeScreen = ({navigation}) => {
           alignItems: 'center',
           padding: 10,
         }}>
-        <Image style={styles.banner} source={require('../../img/banner.png')} />
+        <Image style={styles.banner} source={images.Banner} />
       </View>
       <View>
         <View style={styles.textComponent}>
@@ -48,33 +48,36 @@ const HomeScreen = ({navigation}) => {
         </View>
         <View>
           <View style={styles.items}>
-            <TouchableOpacity onPress={() => navigation.navigate('SearchInfo')}>
+            <TouchableOpacity
+              onPress={() =>
+                navigation.navigate('SearchInfo')
+              }>
               <View style={styles.item}>
-              <Image
-                style={styles.itemImage}
-                source={require('../../img/tra-cuu-thong-tin.png')}
-              />
-              <Text style={styles.textItem}>Tra cứu thông tin</Text>
+                <Image
+                  style={styles.itemImage}
+                  source={images.SearchInfo}
+                />
+                <Text style={styles.textItem}>Tra cứu thông tin</Text>
               </View>
-            </TouchableOpacity >
+            </TouchableOpacity>
             <View style={styles.item}>
               <Image
                 style={styles.itemImage}
-                source={require('../../img/ket-qua-hoc-tap.png')}
+                source={images.StudyResult}
               />
               <Text style={styles.textItem}>Kết quả học tập</Text>
             </View>
             <View style={styles.item}>
               <Image
                 style={styles.itemImage}
-                source={require('../../img/lop-sinh-vien.png')}
+                source={images.ClassStudent}
               />
               <Text style={styles.textItem}>Lớp sinh viên</Text>
             </View>
             <View style={styles.item}>
               <Image
                 style={styles.itemImage}
-                source={require('../../img/dang-ky-do-an.png')}
+                source={images.RegisterProject}
               />
               <Text style={styles.textItem}>Đăng ký đồ án</Text>
             </View>
@@ -83,28 +86,28 @@ const HomeScreen = ({navigation}) => {
             <View style={styles.item}>
               <Image
                 style={styles.itemImage}
-                source={require('../../img/dang-ky-chuyen-de.png')}
+                source={images.RegisterTopic}
               />
               <Text style={styles.textItem}>Đăng ký chuyên đề</Text>
             </View>
             <View style={styles.item}>
               <Image
                 style={styles.itemImage}
-                source={require('../../img/dang-ky-thuc-tap.png')}
+                source={images.RegisterIntern}
               />
               <Text style={styles.textItem}>Đăng ký thực tập</Text>
             </View>
             <View style={styles.item}>
               <Image
                 style={styles.itemImage}
-                source={require('../../img/tien-ich.png')}
+                source={images.Utilities}
               />
               <Text style={styles.textItem}>Tiện ích</Text>
             </View>
             <View style={styles.item}>
               <Image
                 style={styles.itemImage}
-                source={require('../../img/bieu-mau-online.png')}
+                source={images.FormOnline}
               />
               <Text style={styles.textItem}>Biểu mẫu online</Text>
             </View>
@@ -113,13 +116,11 @@ const HomeScreen = ({navigation}) => {
             <View style={styles.item}>
               <Image
                 style={styles.itemImage}
-                source={require('../../img/cau-hoi.png')}
+                source={images.Questions}
               />
               <Text style={styles.textItem}>Câu hỏi</Text>
             </View>
-
           </View>
-          
         </View>
       </View>
     </SafeAreaView>

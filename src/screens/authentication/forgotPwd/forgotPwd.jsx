@@ -2,7 +2,7 @@ import { Image, Text, View, TouchableOpacity, TextInput } from 'react-native'
 import React, { useState } from 'react'
 import styles from './styles'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { sizes } from '../../constants/theme'
+import { sizes } from '../../../constants/theme'
 
 const ForgotPwd = ({ navigation }) => {
   const initialText = '';
