@@ -1,50 +1,33 @@
 import { StyleSheet } from "react-native";
-import { sizes } from "../../constants/theme";
+import { sizes } from "../../../constants/theme";
 
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: 'white',
-        paddingTop: 20,
-        alignItems: 'center'
+        padding: 34,
+        paddingTop: 90
     },
     top: {
-        paddingLeft: 34,
-        paddingRight: 34,
+        alignItems: 'center'
     },
     textTop: {
-        fontSize: 18,
-        fontWeight: 600,
-        color: '#444444',
-        padding: 10,
-    },
-    text: {
         fontSize: 25,
         fontWeight: 'bold',
         color: '#CF0016',
         padding: 10
     },
-    textPsw: {
-        textAlign: 'center',
-        alignItems: 'center'
-    },
-    dataContainer: {
-        marginTop: 0
-    },
-    textInput: {
-        color: '#90A6BB',
-        backgroundColor: '#F3F4FA',
-        fontSize: 15,
-        padding: 17,
-        width: sizes.width - 60,
-        marginTop: 15,
-        borderRadius: 10
+    content1: {
+        fontSize: 17,
+        fontWeight: '600',
+        color: '#CF0016',
     },
     content2: {
-        fontSize: 15,
+        fontSize: 17,
+        fontWeight: '600',
         color: '#4A515E',
-        textAlign: 'left'
+        textAlign: 'center'
     },
     btnSignAnother: {
         marginTop: 50,
@@ -59,11 +42,18 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         textAlign: 'center'
     },
-    btnAnother: {
-        flexDirection: 'row'
-    }
     
-   
+    btnAnother: {
+       marginTop: 300
+    },
+    textBottom: {
+        color: '#4A515E',
+        fontSize: 15,
+        fontWeight: 'normal',
+        marginTop: 5,
+        textAlign: 'center',
+        textDecorationLine: 'underline'
+    }
 
 
 })

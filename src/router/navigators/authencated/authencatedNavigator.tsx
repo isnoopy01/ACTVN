@@ -1,15 +1,16 @@
-import HomeScreen from '../screens/authenticated/home/homeScreen';
-import ScheduleScreen from '../screens/authenticated/schedule/scheduleScreen';
-import NewsScreen from '../screens/authenticated/news/newsScreen';
-import ChatScreen from '../screens/authenticated/Chat/chatScreen';
-import Setting from '../screens/authenticated/setting/settingScreen';
+import {Image, Platform, StyleSheet, Text, View} from 'react-native';
+import React from 'react';
+import {createStackNavigator} from '@react-navigation/stack';
+import {Screens} from '../../ScreensName';
+import {Icon} from '../../../assets/icons/icon';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {Icon} from '../component/Image';
-import {Image, View, VStack, Text, StyleSheet} from 'react-native';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import HomeStack from './home-stack/homeStack';
+import ScheduleScreen from '../../../screens/authenticated/schedule/scheduleScreen';
+import NewsScreen from '../../../screens/authenticated/news/newsScreen';
+import ChatScreen from '../../../screens/authenticated/Chat/chatScreen';
+import Setting from '../../../screens/authenticated/setting/settingScreen';
 const Tab = createBottomTabNavigator();
-
-function MyTabs() {
+const BottomTabNavigator = () => {
   return (
     <Tab.Navigator
       screenOptions={{
@@ -27,12 +28,12 @@ function MyTabs() {
           shadowOpacity: 0.25,
           shadowRadius: 8.84,
           borderTopLeftRadius: 15,
-          borderTopRightRadius: 15
+          borderTopRightRadius: 15,
         },
       }}>
       <Tab.Screen
         name="Trang chủ"
-        component={HomeScreen}
+        component={HomeStack}
         options={{
           headerShown: false,
           tabBarIcon: ({focused}) => (
@@ -43,7 +44,7 @@ function MyTabs() {
                   height: 24,
                   tintColor: focused ? '#CF0016' : '#555555',
                 }}
-                source={require('../img/home.png')}
+                source={Icon.Home}
                 resizeMode="contain"
               />
               <Text
@@ -147,7 +148,7 @@ function MyTabs() {
                   height: 24,
                   tintColor: focused ? '#CF0016' : '#555555',
                 }}
-                source={require('../img/setting.png')}
+                source={Icon.Setting}
                 resizeMode="contain"
               />
               <Text
@@ -165,8 +166,22 @@ function MyTabs() {
       />
     </Tab.Navigator>
   );
-}
-export default MyTabs;
+};
+
+const AuthencatedNavigator = () => {
+  const Stack = createStackNavigator();
+  return (
+    <Stack.Navigator>
+        <Stack.Screen
+            name={Screens.BottomTabNavigator}
+            component={BottomTabNavigator}
+            options={{headerShown: false}}
+        />
+    </Stack.Navigator>
+  );
+};
+
+export default AuthencatedNavigator;
 
 const styles = StyleSheet.create({
   tabBar: {

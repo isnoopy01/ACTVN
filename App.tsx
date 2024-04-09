@@ -3,34 +3,34 @@ import React, {useState} from 'react';
 import { View, Text, StyleSheet, Image, } from 'react-native'
 import AppIntroSlider from 'react-native-app-intro-slider';
 import { COLORS, sizes } from './src/constants/theme';
-import MyStack from './src/router/router';
 import MyTabs from './src/router/tabs';
 import { NavigationContainer } from '@react-navigation/native';
-
+import AppNavigator from './src/router/navigators/AppNavigator';
+import { images } from './src/assets/images/image';
 const slides = [
   {
     id: 1,
     title: 'Kết nối tri thức, Tra cứu thuận tiện',
     description: 'Tìm kiếm thông tin giảng viên, sinh viên một cách nhanh chóng và hiệu quả!',
-    image: require('./src/img/slides1.png')
+    image: images.Slide1
   },
   {
     id: 2,
     title: 'Đồng hành học vụ, liên tục hiệu quả',
     description: 'Quản lý, thông báo lịch dạy, lịch học giúp bạn chủ động về thời gian mang lại trải nghiệm học tập hiệu quả!',
-    image: require('./src/img/slides2.png')
+    image: images.Slide2
   },
   {
     id: 3,
     title: 'Thắp sáng ý tưởng, trò chuyện nhanh chóng',
     description: 'Gửi tin nhắn trực tuyến, kết nối sinh viên và giảng viên.',
-    image: require('./src/img/slides3.png')
+    image: images.Slide3
   },
   {
     id: 4,
     title: 'Nắm bắt thông tin, mở rộng kiến thức',
     description: 'Dễ dàng nắm bắt tin tức, thông tin nổi bật của Học viện, tạo môi trường học tập trở nên đa dạng và thú vị.',
-    image: require('./src/img/slides4.png')
+    image: images.Slide4
   }
 ]
 export default function App() {
@@ -106,7 +106,7 @@ export default function App() {
   }
   return (
     <NavigationContainer>
-      <MyTabs />
+      <AppNavigator />
     </NavigationContainer>
   );
 }

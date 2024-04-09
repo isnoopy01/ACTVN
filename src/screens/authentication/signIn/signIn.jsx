@@ -1,7 +1,7 @@
 import { Image, Text, View, TextInput, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
 import styles from './styles'
-import { sizes } from '../../constants/theme';
+import { sizes } from '../../../constants/theme';
 
 // import { TextInput } from 'react-native-gesture-handler'
 

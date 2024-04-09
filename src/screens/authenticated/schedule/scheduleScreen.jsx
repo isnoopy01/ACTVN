@@ -4,6 +4,7 @@ import styles from './styles';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import TopTab from './topTab';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
+import { Icon } from '../../../assets/icons/icon';
 
 const ScheduleScreen = () => {
   const Tab = createMaterialTopTabNavigator();
@@ -16,7 +17,7 @@ const ScheduleScreen = () => {
       <View style={styles.header}>
         <Image
           style={styles.iconHeader}
-          source={require('../../img/filters-white.png')}
+          source={Icon.FilterWhite}
         />
         <View style={styles.textHeaders}>
           <Text style={styles.textHeader}>Thời khoá biểu </Text>
@@ -24,7 +25,7 @@ const ScheduleScreen = () => {
         </View>
         <Image
           style={styles.iconHeader}
-          source={require('../../img/filters.png')}
+          source={Icon.Filter}
         />
       </View>
 
