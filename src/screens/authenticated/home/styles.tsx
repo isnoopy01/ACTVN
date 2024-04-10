@@ -22,8 +22,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   name: {
-    // borderRightColor: 'black',
-    // borderStyle: 'solid',
+    // borderRightColor: "black",
+    // borderStyle: "solid",
     borderRightColor: 'black',
     borderRightWidth: 1,
     fontSize: 18,
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
   textItem: {
     fontSize: 12,
     color: '#555555',
-    fontWeight: 600,
+    fontWeight: '600',
     width: 60,
     top: 5,
     textAlign: 'center',
