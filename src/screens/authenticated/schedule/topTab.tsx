@@ -1,4 +1,4 @@
-import {StyleSheet, Text, View} from 'react-native';
+// import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import TimeTable from './timetable/timetable';
 import ClassList from './classList/classList';
@@ -25,4 +25,4 @@ const TopTab = () => {
   );
 };
 export default TopTab;
-const styles = StyleSheet.create({});
+// const styles = StyleSheet.create({});
