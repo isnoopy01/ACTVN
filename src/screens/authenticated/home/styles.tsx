@@ -1,6 +1,10 @@
 import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
+  containers: {
+    backgroundColor: 'white',
+    flex: 1,
+  },
   container: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -45,6 +49,19 @@ const styles = StyleSheet.create({
     color: '#444444',
     fontSize: 15,
   },
+  iconBell: {
+    width: 30,
+    height: 30,
+  },
+  frameBanner: {
+    alignItems: 'center',
+    padding: 10,
+  },
+  headerBanner: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: 'white',
+  },
   banner: {
     width: 350,
     height: 137,
@@ -77,7 +94,7 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: '#555555',
     fontWeight: '600',
-    width: 60,
+    width: 62,
     top: 5,
     textAlign: 'center',
   },

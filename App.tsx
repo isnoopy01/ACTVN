@@ -102,7 +102,7 @@ export default function App() {
         }}
         showSkipButton
         renderNextButton={() => buttonLabel('Tiếp theo')}
-        renderSkipButton={() => buttonLabel('Skip')}
+        renderSkipButton={() => buttonLabel('Trở lại')}
         renderDoneButton={() => buttonLabel('Bắt đầu')}
         onDone={() => {
           setShowHomePage(true);

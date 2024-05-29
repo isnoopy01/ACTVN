@@ -1,14 +1,25 @@
-import {Image, Platform, StyleSheet, Text, View} from 'react-native';
+import {Image, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {Screens} from '../../ScreensName';
 import {Icon} from '../../../assets/icons/icon';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import HomeStack from './home-stack/homeStack';
+import SettingStack from './setting-stack/settingStack';
 import ScheduleScreen from '../../../screens/authenticated/schedule/scheduleScreen';
 import NewsScreen from '../../../screens/authenticated/news/newsScreen';
 import ChatScreen from '../../../screens/authenticated/Chat/chatScreen';
-import Setting from '../../../screens/authenticated/setting/settingScreen';
+import SearchInfo from '../../../screens/authenticated/searchInfo/searchInfo';
+import FeatureInfo from '../../../screens/authenticated/featureInfo/featureInfo';
+import StudyResult from '../../../screens/authenticated/studyResult/studyResult';
+import ClassStudent from '../../../screens/authenticated/home/classStudent/classStudent';
+import RegisterProject from '../../../screens/authenticated/home/registerProject/registerProject';
+import RegisterTopic from '../../../screens/authenticated/home/registerTopic/registerTopic';
+import RegisterIntern from '../../../screens/authenticated/home/registerIntern.tsx/registerIntern';
+import Questions from '../../../screens/authenticated/home/question/question';
+import CreateNews from '../../../screens/authenticated/news/createNews/createnews';
+import Notification from '../../../screens/authenticated/home/notification/notification';
+import DetailChat from '../../../screens/authenticated/Chat/detailChat/detailChat';
 const Tab = createBottomTabNavigator();
 const BottomTabNavigator = () => {
   return (
@@ -18,17 +29,23 @@ const BottomTabNavigator = () => {
         tabBarActiveTintColor: '#CF0016',
         tabBarInactiveTintColor: '#555555',
         tabBarStyle: {
-          padding: 10,
+          position: 'absolute',
+
+          bottom: 0,
+          width: '100%',
+          paddingVertical: 10,
+          paddingHorizontal: 10,
+          justifyContent: 'space-between',
           alignItems: 'center',
           shadowColor: '#000',
           shadowOffset: {
-            width: 0,
-            height: 5,
+            width: 3,
+            height: 3,
           },
           shadowOpacity: 0.25,
-          shadowRadius: 8.84,
-          borderTopLeftRadius: 15,
-          borderTopRightRadius: 15,
+          shadowRadius: 5,
+          borderTopLeftRadius: 10,
+          borderTopRightRadius: 10,
         },
       }}>
       <Tab.Screen
@@ -88,6 +105,7 @@ const BottomTabNavigator = () => {
         name="Tin tức"
         component={NewsScreen}
         options={{
+          headerShown: false,
           tabBarIcon: ({focused}) => (
             <View style={styles.tabBar}>
               <Image
@@ -117,6 +135,7 @@ const BottomTabNavigator = () => {
         name="Nhắn tin"
         component={ChatScreen}
         options={{
+          headerShown: false,
           tabBarIcon: ({focused}) => (
             <View style={styles.tabBar}>
               <Image
@@ -138,8 +157,9 @@ const BottomTabNavigator = () => {
       />
       <Tab.Screen
         name="Cài đặt"
-        component={Setting}
+        component={SettingStack}
         options={{
+          headerShown: false,
           tabBarIcon: ({focused}) => (
             <View style={styles.tabBar}>
               <Image
@@ -172,11 +192,66 @@ const AuthencatedNavigator = () => {
   const Stack = createStackNavigator();
   return (
     <Stack.Navigator>
-        <Stack.Screen
-            name={Screens.BottomTabNavigator}
-            component={BottomTabNavigator}
-            options={{headerShown: false}}
-        />
+      <Stack.Screen
+        name={Screens.BottomTabNavigator}
+        component={BottomTabNavigator}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name={Screens.SearchInfo}
+        component={SearchInfo}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name={Screens.FeatureInfo}
+        component={FeatureInfo}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name={Screens.StudyResult}
+        component={StudyResult}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name={Screens.ClassStudent}
+        component={ClassStudent}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name={Screens.RegisterProject}
+        component={RegisterProject}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name={Screens.RegisterTopic}
+        component={RegisterTopic}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name={Screens.RegisterIntern}
+        component={RegisterIntern}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name={Screens.Questions}
+        component={Questions}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name={Screens.CreateNews}
+        component={CreateNews}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name={Screens.Notification}
+        component={Notification}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name={Screens.DetailChat}
+        component={DetailChat}
+        options={{headerShown: false}}
+      />
     </Stack.Navigator>
   );
 };

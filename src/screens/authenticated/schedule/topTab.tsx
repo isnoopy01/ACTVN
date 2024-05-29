@@ -13,8 +13,12 @@ const TopTab = () => {
       screenOptions={{
         tabBarActiveTintColor: '#CF0016',
         tabBarInactiveTintColor: '#555555',
+        tabBarIndicatorStyle: {
+          backgroundColor: 'red',
+        },
         tabBarLabelStyle: {
           fontSize: 14,
+          fontWeight: '600',
           textTransform: 'capitalize',
         },
       }}>

@@ -4,13 +4,11 @@ import styles from './styles';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {images} from '../../../assets/images/image';
 import {Icon} from '../../../assets/icons/icon';
+// import LinearGradient from 'react-native-linear-gradient';
+
 const HomeScreen = ({navigation}: {navigation: any}) => {
   return (
-    <SafeAreaView
-      style={{
-        backgroundColor: 'white',
-        flex: 1,
-      }}>
+    <SafeAreaView style={styles.containers}>
       <View style={styles.container}>
         <View style={styles.header1}>
           <Image style={{width: 40, height: 40}} source={images.Avatar} />
@@ -23,15 +21,24 @@ const HomeScreen = ({navigation}: {navigation: any}) => {
             <Text style={styles.major}>An toàn thông tin</Text>
           </View>
         </View>
-        <View>
-          <Image style={{width: 30, height: 30}} source={Icon.Bell} />
-        </View>
+        <TouchableOpacity onPress={() => navigation.navigate('Notification')}>
+          <Image style={styles.iconBell} source={Icon.Bell} />
+        </TouchableOpacity>
       </View>
       <View
-        style={{
-          alignItems: 'center',
-          padding: 10,
-        }}>
+        // colors={['#4c669f', '#3b5998', '#192f6a']}
+        style={styles.frameBanner}>
+        {/* <View>
+          <View>
+            <Text style={styles.headerBanner}>Xin chào</Text>
+            <Text style={styles.textBanner}>
+              Chào mừng bạn đến với ACT Office.
+            </Text>
+          </View>
+          <View>
+            <Image style={styles.imgBanner} source={images.StudentHome} />
+          </View>
+        </View> */}
         <Image style={styles.banner} source={images.Banner} />
       </View>
       <View>
@@ -46,28 +53,50 @@ const HomeScreen = ({navigation}: {navigation: any}) => {
                 <Text style={styles.textItem}>Tra cứu thông tin</Text>
               </View>
             </TouchableOpacity>
-            <View style={styles.item}>
-              <Image style={styles.itemImage} source={images.StudyResult} />
-              <Text style={styles.textItem}>Kết quả học tập</Text>
-            </View>
-            <View style={styles.item}>
-              <Image style={styles.itemImage} source={images.ClassStudent} />
-              <Text style={styles.textItem}>Lớp sinh viên</Text>
-            </View>
-            <View style={styles.item}>
-              <Image style={styles.itemImage} source={images.RegisterProject} />
-              <Text style={styles.textItem}>Đăng ký đồ án</Text>
-            </View>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('StudyResult')}>
+              <View style={styles.item}>
+                <Image style={styles.itemImage} source={images.StudyResult} />
+                <Text style={styles.textItem}>Kết quả học tập</Text>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('ClassStudent')}>
+              <View style={styles.item}>
+                <Image style={styles.itemImage} source={images.ClassStudent} />
+                <Text style={styles.textItem}>Lớp sinh viên</Text>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('RegisterProject')}>
+              <View style={styles.item}>
+                <Image
+                  style={styles.itemImage}
+                  source={images.RegisterProject}
+                />
+                <Text style={styles.textItem}>Đăng ký đồ án</Text>
+              </View>
+            </TouchableOpacity>
           </View>
           <View style={styles.items}>
-            <View style={styles.item}>
-              <Image style={styles.itemImage} source={images.RegisterTopic} />
-              <Text style={styles.textItem}>Đăng ký chuyên đề</Text>
-            </View>
-            <View style={styles.item}>
-              <Image style={styles.itemImage} source={images.RegisterIntern} />
-              <Text style={styles.textItem}>Đăng ký thực tập</Text>
-            </View>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('RegisterTopic')}>
+              <View style={styles.item}>
+                <Image style={styles.itemImage} source={images.RegisterTopic} />
+                <Text style={styles.textItem}>Đăng ký chuyên đề</Text>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('RegisterIntern')}>
+              <View style={styles.item}>
+                <Image
+                  style={styles.itemImage}
+                  source={images.RegisterIntern}
+                />
+                <Text style={styles.textItem}>Đăng ký thực tập</Text>
+              </View>
+            </TouchableOpacity>
+
             <View style={styles.item}>
               <Image style={styles.itemImage} source={images.Utilities} />
               <Text style={styles.textItem}>Tiện ích</Text>
@@ -78,10 +107,12 @@ const HomeScreen = ({navigation}: {navigation: any}) => {
             </View>
           </View>
           <View style={styles.items}>
-            <View style={styles.item}>
-              <Image style={styles.itemImage} source={images.Questions} />
-              <Text style={styles.textItem}>Câu hỏi</Text>
-            </View>
+            <TouchableOpacity onPress={() => navigation.navigate('Questions')}>
+              <View style={styles.item}>
+                <Image style={styles.itemImage} source={images.Questions} />
+                <Text style={styles.textItem}>Câu hỏi</Text>
+              </View>
+            </TouchableOpacity>
           </View>
         </View>
       </View>

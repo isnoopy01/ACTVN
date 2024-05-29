@@ -1,0 +1,306 @@
+import {StyleSheet} from 'react-native';
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: 'white',
+    flex: 1,
+  },
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    borderBottomColor: '#E4E4E4',
+    borderBottomWidth: 1,
+    paddingLeft: 20,
+    paddingRight: 20,
+    paddingTop: 15,
+    paddingBottom: 20,
+  },
+  iconHeader: {
+    width: 25,
+    height: 25,
+  },
+  textHeaders: {
+    flexDirection: 'row',
+  },
+  textHeader: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#444444',
+  },
+  search: {
+    paddingLeft: 20,
+    paddingRight: 20,
+    marginTop: 15,
+  },
+  searchBar: {
+    flexDirection: 'row',
+    paddingBottom: 10,
+    paddingTop: 10,
+    paddingRight: 20,
+    paddingLeft: 20,
+    backgroundColor: '#F2F2F2',
+    borderRadius: 25,
+  },
+  iconSearch: {
+    width: 25,
+    height: 25,
+  },
+  textSearch: {
+    fontSize: 15,
+    color: '#969696',
+    paddingLeft: 10,
+  },
+  title: {
+    paddingBottom: 5,
+    paddingLeft: 20,
+    paddingRight: 20,
+    paddingTop: 20,
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
+  textTitle: {
+    fontSize: 15,
+    fontWeight: '600',
+  },
+  numberStudent: {
+    fontSize: 15,
+    fontWeight: '600',
+  },
+  avatarStudent: {
+    width: 40,
+    height: 40,
+  },
+  infoListStudent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingLeft: 20,
+    paddingRight: 20,
+    paddingBottom: 12,
+    paddingTop: 12,
+    borderBottomWidth: 0.5,
+    borderBottomColor: '#D8D8D8',
+  },
+  infoListS: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  infoTextS: {
+    marginLeft: 10,
+  },
+  nameStudent: {
+    fontSize: 15,
+    fontWeight: '500',
+    color: '#444444',
+  },
+  msvStudent: {
+    fontSize: 14,
+    color: '#444444',
+    paddingTop: 3,
+  },
+  frameButton: {
+    borderWidth: 1,
+    borderColor: '#CF0016',
+    paddingLeft: 10,
+    paddingRight: 10,
+    paddingBottom: 8,
+    paddingTop: 8,
+    borderRadius: 5,
+  },
+  buttonDetail: {
+    fontSize: 13,
+    color: '#CF0016',
+  },
+  optionButton: {
+    marginTop: 15,
+    marginBottom: 10,
+  },
+  modal: {
+    // alignItems: 'center',
+    backgroundColor: '#00ff00',
+    // padding: 100,
+  },
+  centeredView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0 0 0 / 0.4)',
+  },
+  modalView: {
+    backgroundColor: 'white',
+    borderRadius: 20,
+    padding: 20,
+    // alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  button: {
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2,
+  },
+
+  frameInfo: {
+    // padding: 20,
+  },
+  information: {
+    // marginTop: 10,
+  },
+  name: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingTop: 10,
+    paddingBottom: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: '#D1D1D1',
+  },
+  headerName: {
+    width: 100,
+    fontSize: 14,
+    color: '#444444',
+  },
+  fullname: {
+    fontSize: 15,
+    fontWeight: 'bold',
+    color: '#444444',
+    marginLeft: 15,
+  },
+  msv: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingTop: 10,
+    paddingBottom: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: '#D1D1D1',
+  },
+  textMsv: {
+    width: 100,
+    fontSize: 14,
+    color: '#444444',
+  },
+  codeStudent: {
+    fontSize: 15,
+    fontWeight: 'bold',
+    color: '#444444',
+    marginLeft: 15,
+  },
+  personalEmail: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingTop: 10,
+    paddingBottom: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: '#D1D1D1',
+  },
+  textPersonal: {
+    width: 100,
+    fontSize: 14,
+    color: '#444444',
+  },
+  infoPersonal: {
+    fontSize: 15,
+    fontWeight: 'bold',
+    color: '#444444',
+    marginLeft: 15,
+    width: 190,
+  },
+  phones: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingTop: 10,
+    paddingBottom: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: '#D1D1D1',
+  },
+  textPhones: {
+    width: 100,
+    fontSize: 14,
+    color: '#444444',
+  },
+  infoPhone: {
+    fontSize: 15,
+    fontWeight: 'bold',
+    color: '#444444',
+    marginLeft: 15,
+  },
+
+  majors: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingTop: 10,
+    paddingBottom: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: '#D1D1D1',
+  },
+  textMajors: {
+    width: 100,
+    fontSize: 14,
+    color: '#444444',
+  },
+  infoMajors: {
+    fontSize: 15,
+    fontWeight: 'bold',
+    color: '#444444',
+    marginLeft: 15,
+  },
+  subsys: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingTop: 10,
+    paddingBottom: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: '#D1D1D1',
+  },
+  textSubsys: {
+    width: 100,
+    fontSize: 14,
+    color: '#444444',
+  },
+  infoSubsys: {
+    fontSize: 15,
+    fontWeight: 'bold',
+    color: '#444444',
+    marginLeft: 15,
+  },
+  class_end: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingTop: 10,
+    paddingBottom: 10,
+  },
+  textClass: {
+    width: 100,
+    fontSize: 14,
+    color: '#444444',
+  },
+  infoClass: {
+    fontSize: 15,
+    fontWeight: 'bold',
+    color: '#444444',
+    marginLeft: 15,
+  },
+  headerModal: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingBottom: 10,
+    paddingTop: 5,
+  },
+  titleModal: {
+    fontSize: 18,
+    fontWeight: '700',
+  },
+  iconClose: {
+    width: 24,
+    height: 24,
+  },
+});
+
+export default styles;
