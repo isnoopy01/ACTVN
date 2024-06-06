@@ -2,7 +2,7 @@ import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {Screens} from '../ScreensName';
 import AuthencatedNavigator from './authencated/authencatedNavigator';
-import AuthenticationNavigator from './authencated/authencatedNavigator';
+import AuthenticationNavigatior from './authencation/AuthenticationNavigatior';
 
 const AppNavigator = () => {
   const Stack = createStackNavigator();
@@ -10,7 +10,7 @@ const AppNavigator = () => {
     <Stack.Navigator>
       <Stack.Screen
         name={Screens.AuthenticationNavigator}
-        component={AuthenticationNavigator}
+        component={AuthenticationNavigatior}
         options={{headerShown: false}}
       />
       <Stack.Screen
