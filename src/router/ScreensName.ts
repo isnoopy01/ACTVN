@@ -35,4 +35,5 @@ export enum Screens {
   CreateNews = 'CreateNews',
   Notification = 'Notification',
   DetailChat = 'DetailChat',
+  Walkthrough = 'Walkthrough',
 }

@@ -1,25 +1,24 @@
-import {Image, Text, View, TextInput, TouchableOpacity} from 'react-native';
+import {Text, View, TextInput, TouchableOpacity} from 'react-native';
 import React, {useState} from 'react';
 import styles from './styles';
 import {sizes} from '../../../constants/theme';
-
-// import { TextInput } from 'react-native-gesture-handler'
+import {Screens} from '../../../router/ScreensName';
 
 const SignIn = ({navigation}: {navigation: any}) => {
   // const inputAccessoryViewID = 'uniqueID';
-  const initialText = '';
-  const [text, setText] = useState(initialText);
+
+  const [text, setText] = useState('');
   return (
     <View style={styles.container}>
       <View style={styles.top}>
-        <Image
+        {/* <Image
           source={require('../../img/logo-act.png')}
           style={{
             alignItems: 'center',
             padding: 34,
             paddingTop: 90,
           }}
-        />
+        /> */}
         <Text style={styles.textTop}>ACT OFFICE</Text>
         <View
           style={{
@@ -57,19 +56,22 @@ const SignIn = ({navigation}: {navigation: any}) => {
 
         /> */}
         <View style={styles.btnForgot}>
-          <TouchableOpacity onPress={() => navigation.navigate('ForgotPwd')}>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate('ForgotPwd');
+            }}>
             <View>
               <Text style={styles.textForgot}>Quên mật khẩu?</Text>
             </View>
           </TouchableOpacity>
         </View>
-        <View style={styles.btnSignin}>
-          <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')}>
-            <View>
-              <Text style={styles.btnText}>Đăng nhập</Text>
-            </View>
-          </TouchableOpacity>
-        </View>
+        <TouchableOpacity
+          onPress={() => navigation.navigate(Screens.AuthenticatedNavigator)}
+          style={styles.btnSignin}>
+          <View>
+            <Text style={styles.btnText}>Đăng nhập</Text>
+          </View>
+        </TouchableOpacity>
         <View style={styles.frameLine}>
           <View style={styles.line1} />
           <View>
@@ -80,20 +82,15 @@ const SignIn = ({navigation}: {navigation: any}) => {
         <View style={styles.btnOffice}>
           <TouchableOpacity
             onPress={() => navigation.navigate('SignInAnother')}>
-            <Image
+            {/* <Image
               source={require('../../img/office.png')}
               style={{
                 alignItems: 'center',
               }}
-            />
+            /> */}
           </TouchableOpacity>
           <Text style={styles.textBottom}>Office365</Text>
         </View>
-        {/* <View style={styles.frameForgot}>
-          <TouchableOpacity>
-              <Text style={styles.btnForgot}>Quên mật khẩu?</Text>
-          </TouchableOpacity>
-        </View> */}
       </View>
     </View>
   );
