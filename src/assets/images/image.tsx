@@ -24,4 +24,6 @@ export const images = {
   Avatar_online: require('./avatar_onl.png'),
   Logo: require('./logo-act.png'),
   StudentHome: require('./studentHome.png'),
+  LogoACT: require('./logo-act.png'),
+  Office: require('./office.png'),
 };

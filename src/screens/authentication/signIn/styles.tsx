@@ -8,6 +8,11 @@ const styles = StyleSheet.create({
     padding: 34,
     paddingTop: 90,
   },
+  logoAct: {
+    alignItems: 'center',
+    padding: 34,
+    paddingTop: 90,
+  },
   top: {
     alignItems: 'center',
   },

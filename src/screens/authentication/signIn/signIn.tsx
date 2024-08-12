@@ -1,7 +1,8 @@
-import {Text, View, TextInput, TouchableOpacity} from 'react-native';
+import {Text, View, TextInput, TouchableOpacity, Image} from 'react-native';
 import React, {useState} from 'react';
 import styles from './styles';
 import {sizes} from '../../../constants/theme';
+import {images} from '../../../assets/images/image';
 import {Screens} from '../../../router/ScreensName';
 
 const SignIn = ({navigation}: {navigation: any}) => {
@@ -11,14 +12,7 @@ const SignIn = ({navigation}: {navigation: any}) => {
   return (
     <View style={styles.container}>
       <View style={styles.top}>
-        {/* <Image
-          source={require('../../img/logo-act.png')}
-          style={{
-            alignItems: 'center',
-            padding: 34,
-            paddingTop: 90,
-          }}
-        /> */}
+        <Image source={images.LogoACT} style={styles.logoAct} />
         <Text style={styles.textTop}>ACT OFFICE</Text>
         <View
           style={{
@@ -82,12 +76,12 @@ const SignIn = ({navigation}: {navigation: any}) => {
         <View style={styles.btnOffice}>
           <TouchableOpacity
             onPress={() => navigation.navigate('SignInAnother')}>
-            {/* <Image
-              source={require('../../img/office.png')}
+            <Image
+              source={images.Office}
               style={{
                 alignItems: 'center',
               }}
-            /> */}
+            />
           </TouchableOpacity>
           <Text style={styles.textBottom}>Office365</Text>
         </View>

@@ -2,6 +2,8 @@ import {Image, Text, View, TouchableOpacity, TextInput} from 'react-native';
 import React, {useState} from 'react';
 import styles from './styles';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import {images} from '../../../assets/images/image';
+import {Icon} from '../../../assets/icons/icon';
 // import {sizes} from '../../../constants/theme';
 
 const ForgotPwd = ({navigation}: {navigation: any}) => {
@@ -26,7 +28,7 @@ const ForgotPwd = ({navigation}: {navigation: any}) => {
                   width: 30,
                   height: 30,
                 }}
-                source={require('../../img/arrow-left.png')}
+                source={Icon.ArrowLeft}
               />
             </TouchableOpacity>
           </View>
@@ -39,7 +41,7 @@ const ForgotPwd = ({navigation}: {navigation: any}) => {
                 width: 30,
                 height: 30,
               }}
-              source={require('../../img/arrow-right.png')}
+              source={Icon.FilterWhite}
             />
           </View>
         </View>
@@ -49,7 +51,7 @@ const ForgotPwd = ({navigation}: {navigation: any}) => {
             padding: 20,
           }}>
           <Image
-            source={require('../../img/logo-act.png')}
+            source={images.LogoACT}
             style={{
               alignItems: 'center',
               padding: 34,

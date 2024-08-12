@@ -1,7 +1,8 @@
 import {Image, Text, View, TouchableOpacity} from 'react-native';
 import React from 'react';
 import styles from './styles';
-// import IonIcon from 'react-native-vector-icons/Ionicons';
+import {images} from '../../../assets/images/image';
+
 // import {sizes} from '../../../constants/theme';
 
 const SignInAnother = ({navigation}: {navigation: any}) => {
@@ -9,7 +10,7 @@ const SignInAnother = ({navigation}: {navigation: any}) => {
     <View style={styles.container}>
       <View style={styles.top}>
         <Image
-          source={require('../../img/logo-act.png')}
+          source={images.LogoACT}
           style={{
             alignItems: 'center',
             padding: 34,
