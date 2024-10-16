@@ -32,4 +32,5 @@ export const Icon = {
   addFile: require('./attachment.png'),
   menuVertical: require('./menu-vertical.png'),
   Close: require('./cross.png'),
+  CloseWhite: require('./cross-circle.png')
 };
