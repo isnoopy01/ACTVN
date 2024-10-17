@@ -4,10 +4,27 @@ import styles from './styles';
 import {sizes} from '../../../constants/theme';
 import {images} from '../../../assets/images/image';
 import {Screens} from '../../../router/ScreensName';
+import axios from 'axios';
 
+const LOGIN_API = 'https://api-kma.zoffice.vn/edu/v1/auth/login';
 const SignIn = ({navigation}: {navigation: any}) => {
   // const inputAccessoryViewID = 'uniqueID';
+  const [userName, setUserName] = useState('');
+  const [password, setPassword] = useState('');
 
+  const login = async () => {
+    try {
+      const response = await axios.post(LOGIN_API, {
+        username: userName,
+        password: password,
+      });
+      if (!!response && response.status === 200) {
+        navigation.navigate(Screens.AuthenticatedNavigator);
+      }
+    } catch (error) {
+      console.log('errr', error);
+    }
+  };
   const [text, setText] = useState('');
   return (
     <View style={styles.container}>
@@ -25,8 +42,8 @@ const SignIn = ({navigation}: {navigation: any}) => {
         <View style={styles.dataContainer}>
           <TextInput
             style={styles.textInput}
-            onChangeText={setText}
-            value={text}
+            onChangeText={e => setUserName(e)}
+            value={userName}
             placeholder={'Nhập tài khoản'}
           />
           <View
@@ -38,8 +55,8 @@ const SignIn = ({navigation}: {navigation: any}) => {
             }}>
             <TextInput
               style={styles.textInput}
-              onChangeText={setText}
-              value={text}
+              onChangeText={e => setPassword(e)}
+              value={password}
               placeholder={'Mật khẩu'}
             />
           </View>
@@ -59,9 +76,7 @@ const SignIn = ({navigation}: {navigation: any}) => {
             </View>
           </TouchableOpacity>
         </View>
-        <TouchableOpacity
-          onPress={() => navigation.navigate(Screens.AuthenticatedNavigator)}
-          style={styles.btnSignin}>
+        <TouchableOpacity onPress={login} style={styles.btnSignin}>
           <View>
             <Text style={styles.btnText}>Đăng nhập</Text>
           </View>
