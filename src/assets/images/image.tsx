@@ -26,4 +26,6 @@ export const images = {
   StudentHome: require('./studentHome.png'),
   LogoACT: require('./logo-act.png'),
   Office: require('./office.png'),
+  BannerTeacher: require('./bannerTeacher.png'),
+  IconWhite: require('./iconWhite.png')
 };

@@ -78,7 +78,7 @@ const BottomTabNavigator = () => {
         }}
       />
       <Tab.Screen
-        name="Lịch học"
+        name="Lịch"
         component={ScheduleScreen}
         options={{
           headerShown: false,
@@ -90,12 +90,13 @@ const BottomTabNavigator = () => {
               />
               <Text
                 style={{
+                  textAlign: 'center',
                   fontSize: 12,
                   marginTop: 5,
                   fontWeight: '400',
                   color: focused ? '#CF0016' : '#555555',
                 }}>
-                Lịch học
+                Lịch
               </Text>
             </View>
           ),

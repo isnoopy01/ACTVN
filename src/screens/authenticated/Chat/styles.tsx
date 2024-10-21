@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
   item: {
     width: 50,
     marginRight: 25,
-    height: 100,
+    height: 80,
   },
   title: {
     fontSize: 14,

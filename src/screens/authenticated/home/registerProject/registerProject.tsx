@@ -5,12 +5,20 @@ import {
   TouchableOpacity,
   Pressable,
   Modal,
+  FlatList,
+  ScrollView,
+  TextInput
 } from 'react-native';
 import {SafeAreaView} from 'react-native';
 import React, {useState} from 'react';
 import styles from './styles';
 import {Icon} from '../../../../assets/icons/icon';
+import { images } from '../../../../assets/images/image';
 import {Dropdown} from 'react-native-element-dropdown';
+import { Searchbar } from 'react-native-paper';
+import SearchBar from 'react-native-search-bar';
+
+
 // import {images} from '../../../../assets/images/image';
 // import SearchBar from 'react-native-search-bar';
 
@@ -27,8 +35,13 @@ const data = [
 
 const RegisterProject = ({navigation}: {navigation: any}) => {
   const [modalVisible, setModalVisible] = useState(false);
+  const [modalRegister, setModalRegister] = useState(false);
   const [value, setValue] = useState('');
   const [isFocus, setIsFocus] = useState(false);
+  const [searchQuery, setSearchQuery] = React.useState('');
+  const initialText = '';
+  const [text, setText] = useState(initialText);
+  
 
   const renderLabel = () => {
     // if (value || isFocus) {
@@ -47,7 +60,7 @@ const RegisterProject = ({navigation}: {navigation: any}) => {
           <Image style={styles.iconHeader} source={Icon.ArrowLeft} />
         </TouchableOpacity>
         <View style={styles.textHeaders}>
-          <Text style={styles.textHeader}>Đăng ký đồ án</Text>
+          <Text style={styles.textHeader}>Đề tài đồ án</Text>
         </View>
         <Image style={styles.iconHeader} source={Icon.FilterWhite} />
       </View>
@@ -87,7 +100,7 @@ const RegisterProject = ({navigation}: {navigation: any}) => {
         <Text style={styles.textTitle}>Danh sách đề tài</Text>
       </View>
       <Modal
-        animationType="slide"
+        animationType="none"
         transparent={true}
         visible={modalVisible}
         onRequestClose={() => {
@@ -103,84 +116,177 @@ const RegisterProject = ({navigation}: {navigation: any}) => {
                 <Image style={styles.iconClose} source={Icon.Close} />
               </Pressable>
             </View>
-            <View>
-              <View style={styles.frameInfo}>
-                <View style={styles.information}>
-                  <View style={styles.time}>
-                    <Text style={styles.headerTime}>Thời gian đăng ký: </Text>
-                    <Text style={styles.timeRegisters}>
-                      00:00 12/06/2024 - 23:59 14/06/2024
-                    </Text>
-                  </View>
-                  <View style={styles.name}>
-                    <Text style={styles.nameProject}>
-                      Xây dựng ứng dụng mạng xã hội an toàn phục vụ cho công tác
-                      kết nối, tương tác giữa sinh viên, giảng viên tại Học viện
-                      Kỹ thuật mật mã
-                    </Text>
-                  </View>
+
+            <ScrollView style={styles.frameInfo}>
+              <View style={styles.information}>
+                <View style={styles.time}>
+                  <Text style={styles.headerTime}>Thời gian đăng ký: </Text>
+                  <Text style={styles.timeRegisters}>
+                    00:00 12/06/2024 - 23:59 14/06/2024
+                  </Text>
+                </View>
+                <View style={styles.name}>
+                  <Text style={styles.nameProject}>
+                    Xây dựng ứng dụng mạng xã hội an toàn phục vụ cho công tác
+                    kết nối, tương tác giữa sinh viên, giảng viên tại Học viện
+                    Kỹ thuật mật mã
+                  </Text>
+                </View>
+                <View>
+                  <Text style={styles.headerItemPopup}>Mô tả</Text>
                   <View>
-                    <Text style={styles.headerItemPopup}>Mô tả</Text>
+                    <Text style={styles.describeItem}>Chức năng</Text>
                     <View>
-                      <Text style={styles.describeItem}>Chức năng</Text>
-                      <View>
-                        <Text style={styles.contentDescribe}>
-                          - Gửi nhận thông báo {'\n'}- Trò chuyện trực tuyến{' '}
-                          {'\n'}- Thăm dò, lấy ý kiến người học {'\n'}- Đăng ký
-                          Đồ án, thực tập, chuyên đề {'\n'}- Theo dõi lịch học,
-                          lịch thi {'\n'}- Trao đổi nhóm lớp, nhóm sinh viên{' '}
-                          {'\n'}- Chia sẻ tài liệu
-                        </Text>
-                      </View>
-                      <Text style={styles.describeItem}>
-                        Đảm bảo các chức năng an toàn về xác thực, phân quyền,
-                        chống lại các tấn công cơ bản
+                      <Text style={styles.contentDescribe}>
+                        - Gửi nhận thông báo {'\n'}- Trò chuyện trực tuyến{' '}
+                        {'\n'}- Thăm dò, lấy ý kiến người học {'\n'}- Đăng ký Đồ
+                        án, thực tập, chuyên đề {'\n'}- Theo dõi lịch học, lịch
+                        thi {'\n'}- Trao đổi nhóm lớp, nhóm sinh viên {'\n'}-
+                        Chia sẻ tài liệu
                       </Text>
                     </View>
+                    <Text style={styles.describeItem}>
+                      Đảm bảo các chức năng an toàn về xác thực, phân quyền,
+                      chống lại các tấn công cơ bản
+                    </Text>
                   </View>
+                </View>
+                <View>
+                  <Text style={styles.headerItemPopup}>Yêu cầu</Text>
+                  <Text style={styles.contentRequest}>
+                    - Gửi nhận thông báo {'\n'}- Trò chuyện trực tuyến {'\n'}-
+                    Thăm dò, lấy ý kiến người học {'\n'}- Đăng ký Đồ án, thực
+                    tập, chuyên đề {'\n'}- Theo dõi lịch học, lịch thi {'\n'}-
+                    Trao đổi nhóm lớp, nhóm sinh viên {'\n'}- Chia sẻ tài liệu
+                  </Text>
+                </View>
+                <View style={styles.Student}>
+                  <Text style={styles.headerItemPopup}>
+                    Số lượng sinh viên tham gia:
+                  </Text>
+                  <Text style={styles.numberStu}> 2</Text>
+                </View>
+                <View style={styles.Lecture}>
+                  <Text style={styles.headerItemPopup}>
+                    Giảng viên hướng dẫn:
+                  </Text>
+                  <Text style={styles.numberLeture}> Trần Anh Tú</Text>
+                </View>
+                <View>
+                  <Text style={styles.headerItemPopup}>
+                    Thông tin giảng viên
+                  </Text>
                   <View>
-                    <Text style={styles.headerItemPopup}>Yêu cầu</Text>
-                    <Text style={styles.contentRequest}>
-                      - Gửi nhận thông báo {'\n'}- Trò chuyện trực tuyến {'\n'}-
-                      Thăm dò, lấy ý kiến người học {'\n'}- Đăng ký Đồ án, thực
-                      tập, chuyên đề {'\n'}- Theo dõi lịch học, lịch thi {'\n'}-
-                      Trao đổi nhóm lớp, nhóm sinh viên {'\n'}- Chia sẻ tài liệu
-                    </Text>
-                  </View>
-                  <View style={styles.Student}>
-                    <Text style={styles.headerItemPopup}>
-                      Số lượng sinh viên tham gia:
-                    </Text>
-                    <Text style={styles.numberStu}> 2</Text>
-                  </View>
-                  <View style={styles.Lecture}>
-                    <Text style={styles.headerItemPopup}>
-                      Giảng viên hướng dẫn:
-                    </Text>
-                    <Text style={styles.numberLeture}> Trần Anh Tú</Text>
-                  </View>
-                  <View>
-                    <Text style={styles.headerItemPopup}>
-                      Thông tin giảng viên
-                    </Text>
-                    <View>
-                      <View style={styles.infoLeture}>
-                        <Text style={styles.headerInfo}>- Khoa: </Text>
-                        <Text style={styles.contents}>An Toàn thông tin</Text>
-                      </View>
-                      <View style={styles.infoLeture}>
-                        <Text style={styles.headerInfo}>- Số điện thoại: </Text>
-                        <Text style={styles.contents}>0367139457</Text>
-                      </View>
-                      <View style={styles.infoLeture}>
-                        <Text style={styles.headerInfo}>- Email: </Text>
-                        <Text style={styles.contents}>tutran@actvn.edu.vn</Text>
-                      </View>
+                    <View style={styles.infoLeture}>
+                      <Text style={styles.headerInfo}>- Khoa: </Text>
+                      <Text style={styles.contents}>An Toàn thông tin</Text>
+                    </View>
+                    <View style={styles.infoLeture}>
+                      <Text style={styles.headerInfo}>- Số điện thoại: </Text>
+                      <Text style={styles.contents}>0367139457</Text>
+                    </View>
+                    <View style={styles.infoLeture}>
+                      <Text style={styles.headerInfo}>- Email: </Text>
+                      <Text style={styles.contents}>tutran@actvn.edu.vn</Text>
                     </View>
                   </View>
                 </View>
               </View>
+            </ScrollView>
+          </View>
+        </View>
+      </Modal>
+      <Modal
+        animationType="none"
+        transparent={true}
+        visible={modalRegister}
+        onRequestClose={() => {
+          // Alert.alert('Modal has been closed.');
+          setModalRegister(!modalRegister);
+        }}>
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <View style={styles.headerModal}>
+              <Image style={styles.iconWhite} source={Icon.FilterWhite} />
+              <Text style={styles.titleModal}>Chọn sinh viên</Text>
+              <Pressable onPress={() => setModalRegister(!modalRegister)}>
+                <Image style={styles.iconClose} source={Icon.Close} />
+              </Pressable>
             </View>
+            <View style={styles.searchBar}>
+              <Image style={styles.iconSearch} source={Icon.Search} />
+              <TextInput
+                style={styles.textSearch}
+                onChangeText={setText}
+                value={text}
+                placeholder={'Tìm kiếm'}
+              />
+            </View>
+            <ScrollView>
+              <View style={styles.header1}>
+                <Image style={{width: 40, height: 40}} source={images.Avatar} />
+                <View style={styles.info}>
+                  <View style={styles.names}>
+                    <Text style={styles.nameS}>Trần Anh Tú</Text>
+                    <Text style={styles.line}>|</Text>
+                    <Text style={styles.codeStudent}>GVAT01</Text>
+                  </View>
+                </View>
+              </View>
+              <View style={styles.header1}>
+                <Image style={{width: 40, height: 40}} source={images.Avatar} />
+                <View style={styles.info}>
+                  <View style={styles.names}>
+                    <Text style={styles.nameS}>Trần Anh Tú</Text>
+                    <Text style={styles.line}>|</Text>
+                    <Text style={styles.codeStudent}>GVAT01</Text>
+                  </View>
+                </View>
+              </View>
+              <View style={styles.header1}>
+                <Image style={{width: 40, height: 40}} source={images.Avatar} />
+                <View style={styles.info}>
+                  <View style={styles.names}>
+                    <Text style={styles.nameS}>Trần Anh Tú</Text>
+                    <Text style={styles.line}>|</Text>
+                    <Text style={styles.codeStudent}>GVAT01</Text>
+                  </View>
+                </View>
+              </View>
+              <View style={styles.header1}>
+                <Image style={{width: 40, height: 40}} source={images.Avatar} />
+                <View style={styles.info}>
+                  <View style={styles.names}>
+                    <Text style={styles.nameS}>Trần Anh Tú</Text>
+                    <Text style={styles.line}>|</Text>
+                    <Text style={styles.codeStudent}>GVAT01</Text>
+                  </View>
+                </View>
+              </View>
+              <View style={styles.header1}>
+                <Image style={{width: 40, height: 40}} source={images.Avatar} />
+                <View style={styles.info}>
+                  <View style={styles.names}>
+                    <Text style={styles.nameS}>Trần Anh Tú</Text>
+                    <Text style={styles.line}>|</Text>
+                    <Text style={styles.codeStudent}>GVAT01</Text>
+                  </View>
+                </View>
+              </View>
+              <View style={styles.header1}>
+                <Image style={{width: 40, height: 40}} source={images.Avatar} />
+                <View style={styles.info}>
+                  <View style={styles.names}>
+                    <Text style={styles.nameS}>Trần Anh Tú</Text>
+                    <Text style={styles.line}>|</Text>
+                    <Text style={styles.codeStudent}>GVAT01</Text>
+                  </View>
+                </View>
+              </View>
+            </ScrollView>
+            <TouchableOpacity style={styles.buttonAddStudent}>
+              <Text style={styles.textButtonAddStudent}>Thêm sinh viên</Text>
+            </TouchableOpacity>
           </View>
         </View>
       </Modal>
@@ -213,11 +319,20 @@ const RegisterProject = ({navigation}: {navigation: any}) => {
             </Text>
             <Text style={styles.instructors}>Trần Anh Tú</Text>
           </View>
+          {/* <Pressable style={styles.buttonRegister} onPress={() => {
+            setModalVisible(false)
+            setModalRegister(true)
+          }}> */}
           <View style={styles.buttonRegister}>
-            <TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                console.log('sdsdsd');
+                setModalRegister(true);
+              }}>
               <Text style={styles.buttonDK}>Đăng ký</Text>
             </TouchableOpacity>
           </View>
+          {/* </Pressable> */}
         </View>
       </View>
     </SafeAreaView>

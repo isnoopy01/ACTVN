@@ -13,17 +13,18 @@ const SignIn = ({navigation}: {navigation: any}) => {
   const [password, setPassword] = useState('');
 
   const login = async () => {
-    try {
-      const response = await axios.post(LOGIN_API, {
-        username: userName,
-        password: password,
-      });
-      if (!!response && response.status === 200) {
-        navigation.navigate(Screens.AuthenticatedNavigator);
-      }
-    } catch (error) {
-      console.log('errr', error);
-    }
+    navigation.navigate(Screens.AuthenticatedNavigator);
+    // try {
+    //   const response = await axios.post(LOGIN_API, {
+    //     username: userName,
+    //     password: password,
+    //   });
+    //   if (!!response && response.status === 200) {
+    //     navigation.navigate(Screens.AuthenticatedNavigator);
+    //   }
+    // } catch (error) {
+    //   console.log('errr', error);
+    // }
   };
   const [text, setText] = useState('');
   return (
