@@ -234,7 +234,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     paddingTop: 6,
     paddingBottom: 6,
-    width: 260,
+    width: 200,
   },
   instructors: {
     fontSize: 12,

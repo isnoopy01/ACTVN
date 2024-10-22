@@ -1,4 +1,4 @@
-import {View, Text, Image, TouchableOpacity, ScrollView, Modal, Pressable, TextInput} from 'react-native';
+import {View, Text, Image, TouchableOpacity, ScrollView, Modal, Pressable, TextInput, FlatList} from 'react-native';
 import {SafeAreaView} from 'react-native';
 import React, {useState} from 'react';
 import styles from './styles';
@@ -19,6 +19,35 @@ const data = [
   {label: 'Item 8', value: '8'},
 ];
 
+const topics = [
+  {
+    id: '1',
+    title: 'Xây dựng hệ thống mạng xã hội KMA',
+    professor: 'Trần Anh Tú',
+    time: '00:00 12/06/2024 - 23:59 14/06/2024',
+  },
+  {
+    id: '2',
+    title: 'Xây dựng hệ thống mạng xã hội KMA',
+    professor: 'Trần Anh Tú',
+    time: '00:00 12/06/2024 - 23:59 14/06/2024',
+  },
+  {
+    id: '3',
+    title: 'Xây dựng hệ thống mạng xã hội KMA',
+    professor: 'Trần Anh Tú',
+    time: '00:00 12/06/2024 - 23:59 14/06/2024',
+  },
+  {
+    id: '4',
+    title: 'Xây dựng hệ thống mạng xã hội KMA',
+    professor: 'Trần Anh Tú',
+    time: '00:00 12/06/2024 - 23:59 14/06/2024',
+  },
+  
+  // Thêm nhiều đề tài khác
+];
+
 const RegisterTopic = ({navigation}: {navigation: any}) => {
   const [value, setValue] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
@@ -37,6 +66,32 @@ const RegisterTopic = ({navigation}: {navigation: any}) => {
     // }
     return null;
   };
+
+  
+
+  const renderItem = ({item}) => (
+        <View style={styles.projectTopic}>
+          <Pressable style={styles.informationTopic} onPress={() => setModalVisible(true)}>
+            <Text style={styles.timeRegister}>
+              00:00 12/06/2024 - 23:59 14/06/2024
+            </Text>
+            <Text style={styles.nameTopic}>
+              Xây dựng hệ thống mạng xã hội KMA
+            </Text>
+            <Text style={styles.instructors}>Trần Anh Tú</Text>
+          </Pressable>
+          <View style={styles.buttonRegister}>
+            <TouchableOpacity
+              onPress={() => {
+                console.log('sdsdsd');
+                setModalRegister(true);
+              }}>
+              <Text style={styles.buttonDK}>Thêm sinh viên</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+  );
+
   return (
     <SafeAreaView style={styles.containers}>
       <View style={styles.header}>
@@ -274,28 +329,11 @@ const RegisterTopic = ({navigation}: {navigation: any}) => {
           </View>
         </View>
       </Modal>
-      <View>
-        <View style={styles.projectTopic}>
-          <Pressable style={styles.informationTopic} onPress={() => setModalVisible(true)}>
-            <Text style={styles.timeRegister}>
-              00:00 12/06/2024 - 23:59 14/06/2024
-            </Text>
-            <Text style={styles.nameTopic}>
-              Xây dựng hệ thống mạng xã hội KMA
-            </Text>
-            <Text style={styles.instructors}>Trần Anh Tú</Text>
-          </Pressable>
-          <View style={styles.buttonRegister}>
-            <TouchableOpacity
-              onPress={() => {
-                console.log('sdsdsd');
-                setModalRegister(true);
-              }}>
-              <Text style={styles.buttonDK}>Thêm sinh viên</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </View>
+      <FlatList
+        data={topics}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id}
+      />
     </SafeAreaView>
   );
 };

@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   Pressable,
   Modal,
+  FlatList
 } from 'react-native';
 import {SafeAreaView} from 'react-native';
 import React, {useState} from 'react';
@@ -25,6 +26,35 @@ const data = [
   {label: 'Item 8', value: '8'},
 ];
 
+const topics = [
+  {
+    id: '1',
+    title: 'Xây dựng hệ thống mạng xã hội KMA',
+    professor: 'Trần Anh Tú',
+    time: '00:00 12/06/2024 - 23:59 14/06/2024',
+  },
+  {
+    id: '2',
+    title: 'Xây dựng hệ thống mạng xã hội KMA',
+    professor: 'Trần Anh Tú',
+    time: '00:00 12/06/2024 - 23:59 14/06/2024',
+  },
+  {
+    id: '3',
+    title: 'Xây dựng hệ thống mạng xã hội KMA',
+    professor: 'Trần Anh Tú',
+    time: '00:00 12/06/2024 - 23:59 14/06/2024',
+  },
+  {
+    id: '4',
+    title: 'Xây dựng hệ thống mạng xã hội KMA',
+    professor: 'Trần Anh Tú',
+    time: '00:00 12/06/2024 - 23:59 14/06/2024',
+  },
+  
+  // Thêm nhiều đề tài khác
+];
+
 const RegisterProject = ({navigation}: {navigation: any}) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [modalRegister, setModalRegister] = useState(false);
@@ -41,6 +71,33 @@ const RegisterProject = ({navigation}: {navigation: any}) => {
     // }
     return null;
   };
+
+  const renderItem = ({item}) => (
+    <View style={styles.projectTopic}>
+      <Pressable style={styles.informationTopic} onPress={() => setModalVisible(true)}>
+        <Text style={styles.timeRegister}>
+          00:00 12/06/2024 - 23:59 14/06/2024
+        </Text>
+        <Text style={styles.nameTopic}>Xây dựng hệ thống mạng xã hội KMA</Text>
+        <Text style={styles.instructors}>Trần Anh Tú</Text>
+      </Pressable>
+      {/* <Pressable style={styles.buttonRegister} onPress={() => {
+            setModalVisible(false)
+            setModalRegister(true)
+          }}> */}
+      <View style={styles.buttonRegister}>
+        <TouchableOpacity
+          onPress={() => {
+            console.log('sdsdsd');
+            setModalRegister(true);
+          }}>
+          <Text style={styles.buttonDK}>Đăng ký</Text>
+        </TouchableOpacity>
+      </View>
+      {/* </Pressable> */}
+    </View>
+  );
+
   return (
     <SafeAreaView style={styles.containers}>
       <View style={styles.header}>
@@ -283,50 +340,11 @@ const RegisterProject = ({navigation}: {navigation: any}) => {
           </View>
         </View>
       </Modal>
-      <View>
-        <View style={styles.projectTopic}>
-          <Pressable
-            style={styles.informationTopic}
-            onPress={() => setModalVisible(true)}>
-            <Text style={styles.timeRegister}>
-              00:00 12/06/2024 - 23:59 14/06/2024
-            </Text>
-            <Text style={styles.nameTopic}>
-              Xây dựng hệ thống mạng xã hội KMA
-            </Text>
-            <Text style={styles.instructors}>Trần Anh Tú</Text>
-          </Pressable>
-          <View style={styles.buttonRegister}>
-            <TouchableOpacity>
-              <Text style={styles.buttonDK}>Đăng ký</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-        <View style={styles.projectTopic}>
-          <View style={styles.informationTopic}>
-            <Text style={styles.timeRegister}>
-              00:00 12/06/2024 - 23:59 14/06/2024
-            </Text>
-            <Text style={styles.nameTopic}>
-              Xây dựng hệ thống mạng xã hội KMA
-            </Text>
-            <Text style={styles.instructors}>Trần Anh Tú</Text>
-          </View>
-          {/* <Pressable style={styles.buttonRegister} onPress={() => {
-            setModalVisible(false)
-            setModalRegister(true)
-          }}> */}
-            <View style={styles.buttonRegister}>
-            <TouchableOpacity onPress={() => {
-              console.log("sdsdsd")
-              setModalRegister(true)
-            }}>
-              <Text style={styles.buttonDK}>Đăng ký</Text>
-            </TouchableOpacity>
-            </View>
-          {/* </Pressable> */}
-        </View>
-      </View>
+      <FlatList
+        data={topics}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id}
+      />
     </SafeAreaView>
   );
 };
