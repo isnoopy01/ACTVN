@@ -1,5 +1,13 @@
-import {Text, View, Image, TouchableOpacity, Pressable, Modal, ScrollView} from 'react-native';
-import React, {useRef, useState} from 'react';
+import {
+  Text,
+  View,
+  Image,
+  TouchableOpacity,
+  Pressable,
+  Modal,
+  ScrollView,
+} from 'react-native';
+import React, {useRef, useState, useEffect} from 'react';
 import styles from './styles';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import RBSheet from 'react-native-raw-bottom-sheet';
@@ -7,6 +15,7 @@ import TopTab from './topTab';
 import BottomFiller from './bottomFiller';
 // import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import {Icon} from '../../../assets/icons/icon';
+import {schedule} from '../../../repositories/schedule';
 
 const ScheduleScreen = () => {
   const refFilter = useRef();
@@ -24,7 +33,7 @@ const ScheduleScreen = () => {
         <Image style={styles.iconHeader} source={Icon.FilterWhite} />
         <View style={styles.textHeaders}>
           <Text style={styles.textHeader}>Thời khoá biểu </Text>
-          <Text style={styles.textSchedule}>- 2023/2</Text>
+          <Text style={styles.textSchedule}>- 2024/2</Text>
         </View>
         <Pressable onPress={() => setModalVisible(true)}>
           <Image style={styles.iconHeader} source={Icon.Filter} />

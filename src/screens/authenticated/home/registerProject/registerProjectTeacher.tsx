@@ -7,31 +7,27 @@ import {
   Modal,
 } from 'react-native';
 import {SafeAreaView} from 'react-native';
-import React, {useState, useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from './styles';
 import {Icon} from '../../../../assets/icons/icon';
 import {Dropdown} from 'react-native-element-dropdown';
-import {
-  specializedTopic,
-  registerSpecialized,
-} from '../../../../repositories/topic';
+import {projectTopic, registerProject} from '../../../../repositories/topic';
+import {listTeacher} from '../../../../repositories/user';
 import {ALERT_TYPE, Dialog, Toast} from 'react-native-alert-notification';
 // import {images} from '../../../../assets/images/image';
 // import SearchBar from 'react-native-search-bar';
 
-const data = [{label: 'Trần Anh Tú', value: '18f669574360000000002184999'}];
-
-const RegisterTopic = ({navigation}: {navigation: any}) => {
+const RegisterProjectTeacher = ({navigation}: {navigation: any}) => {
+  const [modalVisible, setModalVisible] = useState(false);
+  const [modalRegister, setModalRegister] = useState(false);
   const [value, setValue] = useState('');
   const [isFocus, setIsFocus] = useState(false);
   const [topics, setTopics] = useState([]);
-  const [modalRegister, setModalRegister] = useState(false);
   // const [teacher, setTeacher] = useState([]);
-  const [modalVisible, setModalVisible] = useState(false);
   const [selectTopic, setSelectTopic] = useState('');
 
   const getTopics = async () => {
-    const response = await specializedTopic();
+    const response = await projectTopic();
     setTopics(response.data);
   };
   // const getTeacher = async () => {
@@ -42,18 +38,14 @@ const RegisterTopic = ({navigation}: {navigation: any}) => {
     // getTeacher();
     getTopics();
   }, []);
-  const renderLabel = () => {
-    // if (value || isFocus) {
-    //   return (
-    //     <Text style={[styles.label, isFocus && {color: '#CF0016'}]}>
-    //       Chọn giảng viên
-    //     </Text>
-    //   );
-    // }
-    return null;
-  };
-  const registerTopic = async (id: any) => {
-    var response = await registerSpecialized({id: id});
+  const teacher = [
+    {
+      label: 'Trần Anh Tú',
+      value: '18f669574360000000002184999',
+    },
+  ];
+  const registerTopic = async id => {
+    var response = await registerProject({id: id});
     console.log(response);
     if (response.alert) {
       Toast.show({
@@ -73,6 +65,16 @@ const RegisterTopic = ({navigation}: {navigation: any}) => {
       setModalRegister(!modalRegister);
     }
   };
+  const renderLabel = () => {
+    // if (value || isFocus) {
+    //   return (
+    //     <Text style={[styles.label, isFocus && {color: '#CF0016'}]}>
+    //       Chọn giảng viên
+    //     </Text>
+    //   );
+    // }
+    return null;
+  };
   return (
     <SafeAreaView style={styles.containers}>
       <View style={styles.header}>
@@ -80,42 +82,11 @@ const RegisterTopic = ({navigation}: {navigation: any}) => {
           <Image style={styles.iconHeader} source={Icon.ArrowLeft} />
         </TouchableOpacity>
         <View style={styles.textHeaders}>
-          <Text style={styles.textHeader}>Đăng ký chuyên đề</Text>
+          <Text style={styles.textHeader}>Đề tài đồ án</Text>
         </View>
         <Image style={styles.iconHeader} source={Icon.FilterWhite} />
       </View>
-      <View style={styles.container}>
-        {renderLabel()}
-        <Dropdown
-          style={[styles.dropdown, isFocus && {borderColor: '#CF0016'}]}
-          placeholderStyle={styles.placeholderStyle}
-          selectedTextStyle={styles.selectedTextStyle}
-          inputSearchStyle={styles.inputSearchStyle}
-          iconStyle={styles.iconStyle}
-          data={data}
-          search
-          maxHeight={250}
-          labelField="label"
-          valueField="value"
-          placeholder={!isFocus ? 'Chọn giảng viên' : '...'}
-          searchPlaceholder="Tìm kiếm..."
-          value={value}
-          onFocus={() => setIsFocus(true)}
-          onBlur={() => setIsFocus(false)}
-          onChange={item => {
-            setValue(item.value);
-            setIsFocus(false);
-          }}
-          //   renderLeftIcon={() => (
-          //     <AntDesign
-          //       style={styles.icon}
-          //       color={isFocus ? 'blue' : 'black'}
-          //       name="Safety"
-          //       size={20}
-          //     />
-          //   )}
-        />
-      </View>
+      <View style={styles.container}></View>
       <View style={styles.title}>
         <Text style={styles.textTitle}>Danh sách đề tài</Text>
       </View>
@@ -267,30 +238,6 @@ const RegisterTopic = ({navigation}: {navigation: any}) => {
                 <Text style={styles.nameTopic}>{item.name}</Text>
                 <Text style={styles.instructors}>{item.teacherName}</Text>
               </View>
-
-              {item.is_active ? (
-                <View style={styles.buttonRegister}>
-                  <TouchableOpacity
-                    onPress={() => {
-                      setSelectTopic(item.id);
-                      setModalRegister(true);
-                    }}>
-                    <Text style={styles.buttonDK}>Đăng ký</Text>
-                  </TouchableOpacity>
-                </View>
-              ) : item.is_register ? (
-                <View style={styles.buttonRegisterDisable}>
-                  <TouchableOpacity disabled={true}>
-                    <Text style={styles.buttonDK}>Đã đăng ký</Text>
-                  </TouchableOpacity>
-                </View>
-              ) : (
-                <View style={styles.buttonRegisterDisable}>
-                  <TouchableOpacity disabled={true}>
-                    <Text style={styles.buttonDK}>Đăng ký</Text>
-                  </TouchableOpacity>
-                </View>
-              )}
             </View>
           </>
         ))}
@@ -299,4 +246,4 @@ const RegisterTopic = ({navigation}: {navigation: any}) => {
   );
 };
 
-export default RegisterTopic;
+export default RegisterProjectTeacher;

@@ -1,8 +1,21 @@
-import {SafeAreaView, FlatList, Text, View} from 'react-native';
+import {
+  Text,
+  View,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+  Pressable,
+  Modal,
+  ScrollView,
+  FlatList,
+  SafeAreaView,
+} from 'react-native';
 import styles from './styles';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import moment from 'moment';
 // import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
 import {Calendar, LocaleConfig} from 'react-native-calendars';
+import {getSchedule} from '../../../../repositories/schedule';
 
 LocaleConfig.locales.vn = {
   monthNames: [
@@ -40,44 +53,69 @@ LocaleConfig.locales.vn = {
 LocaleConfig.defaultLocale = 'vn';
 
 const TimeTable = () => {
-  const [selected, setSelected] = useState('');
-  const events = {
-    '2024-02-06': [
-      {
-        time: '12:30 - 14:55',
-        title: 'Kỹ thuật lập trình an toàn',
-        location: '304_TA2TA2',
-      },
-    ],
-    '2024-02-20': [
-      {
-        time: '12:30 - 14:55',
-        title: 'Kỹ thuật lập trình an toàn',
-        location: '304_TA2TA2',
-      },
-    ],
-    '2024-02-27': [
-      {
-        time: '12:30 - 14:55',
-        title: 'Kỹ thuật lập trình an toàn',
-        location: '304_TA2TA2',
-      },
-    ],
+  var today = moment().format('YYYY-MM-DD');
+  const [selectedDate, setSelectedDate] = useState(today);
+  const [schedule, setSchedule] = useState([]);
+  const scheduleStudent = async () => {
+    const response = await getSchedule();
+    setSchedule(response.data);
   };
 
-  // const markedDates = {
-  //   '2024-02-06': {marked: true},
-  //   '2024-02-19': {marked: true},
-  //   '2024-02-20': {selected: true, marked: true, selectedColor: 'red'},
-  // };
+  useEffect(() => {
+    scheduleStudent();
+  }, []);
+
+  const onDayPress = day => {
+    setSelectedDate(day.dateString);
+  };
+  const getMarkedDates = (schedule: any, selectedDate: string) => {
+    const marked = {};
+    schedule.filter((item: any) => {
+      marked[item.date] = {
+        marked: true,
+        dotColor: selectedDate === item.date ? 'white' : 'red', // Đổi màu chấm khi được chọn
+        selectedColor: selectedDate === item.date ? 'red' : undefined, // Màu nền khi được chọn
+        selected: selectedDate === item.date,
+        textColor: selectedDate === item.date ? 'white' : 'black', // Đổi màu chữ
+      };
+    });
+    // Đánh dấu ngày mới được chọn với màu nền đỏ và chữ trắng
+    if (selectedDate && !marked[selectedDate]) {
+      marked[selectedDate] = {
+        selected: true,
+        selectedColor: 'red',
+        textColor: 'white',
+      };
+    }
+
+    return marked;
+  };
+  const renderItem = ({item}) => (
+    <TouchableOpacity
+      style={[
+        styles.scheduleItem,
+        selectedDate === item.date ? styles.selectedScheduleItem : null,
+      ]}>
+      <View style={styles.scheduleTime}>
+        <Text>{item.timeStart}</Text>
+        <Text>|</Text>
+        <Text>{item.timeEnd}</Text>
+      </View>
+      <View style={styles.scheduleDetails}>
+        <Text style={styles.subjectText}>
+          {item.code} ({item.subject})
+        </Text>
+        <Text>{`${item.lesson}, ${item.room}`}</Text>
+      </View>
+      {/* <Ionicons name="chevron-forward-outline" size={24} color="black" /> */}
+    </TouchableOpacity>
+  );
   return (
     <SafeAreaView style={styles.container}>
       <Calendar
-        style={styles.calendar}
-        current={selected}
+        onDayPress={onDayPress} // Sự kiện khi chọn ngày
+        markedDates={getMarkedDates(schedule, selectedDate)} // Gán dữ liệu đánh dấu ngày
         theme={{
-          // backgroundColor: '#ffffff',
-          // calendarBackground: '#ffffff',
           textSectionTitleColor: '#CF0016',
           textSectionTitleDisabledColor: '#DFDFDF',
           selectedDayBackgroundColor: '#CF0016',
@@ -100,35 +138,12 @@ const TimeTable = () => {
           textDayFontSize: 14,
           textMonthFontSize: 18,
           textDayHeaderFontSize: 15,
-          // todayTextColor: 'red',
-          // selectedDayBackgroundColor: 'red',
-          // arrowColor: 'red',
-          // dotColor: 'red',
-        }}
-        onDayPress={day => {
-          setSelected(day.dateString);
-        }}
-        // markedDates={markedDates}
-        markedDates={{
-          [selected]: {
-            selected: true,
-            marked: true,
-            disableTouchEvent: true,
-            dotColor: '#CF0016',
-          },
         }}
       />
       <FlatList
-        data={events[selected] || []}
-        // marked: true,
-        keyExtractor={(item, index) => index.toString()}
-        renderItem={({item}) => (
-          <View style={styles.eventItem}>
-            <Text style={styles.eventTime}>{item.time}</Text>
-            <Text style={styles.eventTitle}>{item.title}</Text>
-            <Text style={styles.eventLocation}>{item.location}</Text>
-          </View>
-        )}
+        data={schedule.filter(item => item.date === selectedDate)} // Lọc lịch theo ngày được chọn
+        renderItem={renderItem}
+        keyExtractor={item => item.id}
         ListEmptyComponent={
           <Text style={styles.noEventsText}>Không có lịch học.</Text>
         }

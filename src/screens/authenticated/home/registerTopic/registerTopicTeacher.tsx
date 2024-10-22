@@ -21,7 +21,7 @@ import {ALERT_TYPE, Dialog, Toast} from 'react-native-alert-notification';
 
 const data = [{label: 'Trần Anh Tú', value: '18f669574360000000002184999'}];
 
-const RegisterTopic = ({navigation}: {navigation: any}) => {
+const RegisterTopicTeacher = ({navigation}: {navigation: any}) => {
   const [value, setValue] = useState('');
   const [isFocus, setIsFocus] = useState(false);
   const [topics, setTopics] = useState([]);
@@ -84,38 +84,7 @@ const RegisterTopic = ({navigation}: {navigation: any}) => {
         </View>
         <Image style={styles.iconHeader} source={Icon.FilterWhite} />
       </View>
-      <View style={styles.container}>
-        {renderLabel()}
-        <Dropdown
-          style={[styles.dropdown, isFocus && {borderColor: '#CF0016'}]}
-          placeholderStyle={styles.placeholderStyle}
-          selectedTextStyle={styles.selectedTextStyle}
-          inputSearchStyle={styles.inputSearchStyle}
-          iconStyle={styles.iconStyle}
-          data={data}
-          search
-          maxHeight={250}
-          labelField="label"
-          valueField="value"
-          placeholder={!isFocus ? 'Chọn giảng viên' : '...'}
-          searchPlaceholder="Tìm kiếm..."
-          value={value}
-          onFocus={() => setIsFocus(true)}
-          onBlur={() => setIsFocus(false)}
-          onChange={item => {
-            setValue(item.value);
-            setIsFocus(false);
-          }}
-          //   renderLeftIcon={() => (
-          //     <AntDesign
-          //       style={styles.icon}
-          //       color={isFocus ? 'blue' : 'black'}
-          //       name="Safety"
-          //       size={20}
-          //     />
-          //   )}
-        />
-      </View>
+      <View style={styles.container}></View>
       <View style={styles.title}>
         <Text style={styles.textTitle}>Danh sách đề tài</Text>
       </View>
@@ -267,30 +236,6 @@ const RegisterTopic = ({navigation}: {navigation: any}) => {
                 <Text style={styles.nameTopic}>{item.name}</Text>
                 <Text style={styles.instructors}>{item.teacherName}</Text>
               </View>
-
-              {item.is_active ? (
-                <View style={styles.buttonRegister}>
-                  <TouchableOpacity
-                    onPress={() => {
-                      setSelectTopic(item.id);
-                      setModalRegister(true);
-                    }}>
-                    <Text style={styles.buttonDK}>Đăng ký</Text>
-                  </TouchableOpacity>
-                </View>
-              ) : item.is_register ? (
-                <View style={styles.buttonRegisterDisable}>
-                  <TouchableOpacity disabled={true}>
-                    <Text style={styles.buttonDK}>Đã đăng ký</Text>
-                  </TouchableOpacity>
-                </View>
-              ) : (
-                <View style={styles.buttonRegisterDisable}>
-                  <TouchableOpacity disabled={true}>
-                    <Text style={styles.buttonDK}>Đăng ký</Text>
-                  </TouchableOpacity>
-                </View>
-              )}
             </View>
           </>
         ))}
@@ -299,4 +244,4 @@ const RegisterTopic = ({navigation}: {navigation: any}) => {
   );
 };
 
-export default RegisterTopic;
+export default RegisterTopicTeacher;

@@ -4,9 +4,9 @@ import styles from './styles';
 import {sizes} from '../../../constants/theme';
 import {images} from '../../../assets/images/image';
 import {Screens} from '../../../router/ScreensName';
-import axios from 'axios';
-
-const LOGIN_API = 'https://api-kma.zoffice.vn/edu/v1/auth/login';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {ALERT_TYPE, Dialog, Toast} from 'react-native-alert-notification';
+import {signInUser} from '../../../repositories/auth';
 const SignIn = ({navigation}: {navigation: any}) => {
   // const inputAccessoryViewID = 'uniqueID';
   const [userName, setUserName] = useState('');
@@ -14,18 +14,39 @@ const SignIn = ({navigation}: {navigation: any}) => {
 
   const login = async () => {
     try {
-      const response = await axios.post(LOGIN_API, {
+      const response = await signInUser({
         username: userName,
         password: password,
       });
-      if (!!response && response.status === 200) {
+      if (response.alert) {
+        await AsyncStorage.setItem('access_token', response.data.access_token);
+        await AsyncStorage.setItem(
+          'refresh_token',
+          response.data.refresh_token,
+        );
+        await AsyncStorage.setItem('info', JSON.stringify(response.data.info));
+        await AsyncStorage.setItem('role', response.data.role);
+        Toast.show({
+          autoClose: 1500,
+          type: ALERT_TYPE.SUCCESS,
+          title: 'Success',
+          textBody: 'Đăng nhập thành công',
+        });
         navigation.navigate(Screens.AuthenticatedNavigator);
+      } else {
+        Toast.show({
+          type: ALERT_TYPE.DANGER,
+          textBody: response.message,
+        });
       }
     } catch (error) {
-      console.log('errr', error);
+      Toast.show({
+        type: ALERT_TYPE.DANGER,
+        title: 'Error',
+        textBody: 'Lỗi hệ thống',
+      });
     }
   };
-  const [text, setText] = useState('');
   return (
     <View style={styles.container}>
       <View style={styles.top}>
@@ -44,6 +65,8 @@ const SignIn = ({navigation}: {navigation: any}) => {
             style={styles.textInput}
             onChangeText={e => setUserName(e)}
             value={userName}
+            autoCapitalize="none"
+            autoCorrect={false}
             placeholder={'Nhập tài khoản'}
           />
           <View
@@ -57,7 +80,10 @@ const SignIn = ({navigation}: {navigation: any}) => {
               style={styles.textInput}
               onChangeText={e => setPassword(e)}
               value={password}
+              autoCorrect={false}
+              autoCapitalize="none"
               placeholder={'Mật khẩu'}
+              secureTextEntry
             />
           </View>
         </View>

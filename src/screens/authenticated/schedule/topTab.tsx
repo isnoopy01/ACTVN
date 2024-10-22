@@ -1,9 +1,10 @@
 // import {StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import TimeTable from './timetable/timetable';
 import ClassList from './classList/classList';
 import TestSchedule from './testSchedule/testSchedule';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
+import {schedule} from '../../../repositories/schedule';
 
 const Tab = createMaterialTopTabNavigator();
 

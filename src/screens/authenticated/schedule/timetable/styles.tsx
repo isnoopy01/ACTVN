@@ -38,6 +38,30 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#888',
   },
+  scheduleItem: {
+    backgroundColor: '#f0f0f0',
+    margin: 10,
+    borderRadius: 10,
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 10,
+  },
+  selectedScheduleItem: {
+    backgroundColor: '#E6F7FF',
+    borderColor: '#1890FF',
+    borderWidth: 2,
+  },
+  scheduleTime: {
+    marginRight: 15,
+    justifyContent: 'center',
+  },
+  scheduleDetails: {
+    flex: 1,
+  },
+  subjectText: {
+    fontWeight: 'bold',
+    fontSize: 16,
+  },
 });
 
 export default styles;

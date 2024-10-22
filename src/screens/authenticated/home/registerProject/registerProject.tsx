@@ -7,29 +7,63 @@ import {
   Modal,
 } from 'react-native';
 import {SafeAreaView} from 'react-native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from './styles';
 import {Icon} from '../../../../assets/icons/icon';
 import {Dropdown} from 'react-native-element-dropdown';
+import {projectTopic, registerProject} from '../../../../repositories/topic';
+import {listTeacher} from '../../../../repositories/user';
+import {ALERT_TYPE, Dialog, Toast} from 'react-native-alert-notification';
 // import {images} from '../../../../assets/images/image';
 // import SearchBar from 'react-native-search-bar';
 
-const data = [
-  {label: 'Item 1', value: '1'},
-  {label: 'Item 2', value: '2'},
-  {label: 'Item 3', value: '3'},
-  {label: 'Item 4', value: '4'},
-  {label: 'Item 5', value: '5'},
-  {label: 'Item 6', value: '6'},
-  {label: 'Item 7', value: '7'},
-  {label: 'Item 8', value: '8'},
-];
-
 const RegisterProject = ({navigation}: {navigation: any}) => {
   const [modalVisible, setModalVisible] = useState(false);
+  const [modalRegister, setModalRegister] = useState(false);
   const [value, setValue] = useState('');
   const [isFocus, setIsFocus] = useState(false);
+  const [topics, setTopics] = useState([]);
+  // const [teacher, setTeacher] = useState([]);
+  const [selectTopic, setSelectTopic] = useState('');
 
+  const getTopics = async () => {
+    const response = await projectTopic();
+    setTopics(response.data);
+  };
+  // const getTeacher = async () => {
+  //   const response = await listTeacher();
+  //   setTeacher(response.data);
+  // };
+  useEffect(() => {
+    // getTeacher();
+    getTopics();
+  }, []);
+  const teacher = [
+    {
+      label: 'Trần Anh Tú',
+      value: '18f669574360000000002184999',
+    },
+  ];
+  const registerTopic = async id => {
+    var response = await registerProject({id: id});
+    if (response.alert) {
+      Toast.show({
+        autoClose: 1500,
+        type: ALERT_TYPE.SUCCESS,
+        title: 'Success',
+        textBody: 'Đăng ký thành công',
+      });
+      setModalRegister(!modalRegister);
+      getTopics();
+    } else {
+      Toast.show({
+        autoClose: 1500,
+        type: ALERT_TYPE.DANGER,
+        textBody: response.message,
+      });
+      setModalRegister(!modalRegister);
+    }
+  };
   const renderLabel = () => {
     // if (value || isFocus) {
     //   return (
@@ -47,7 +81,7 @@ const RegisterProject = ({navigation}: {navigation: any}) => {
           <Image style={styles.iconHeader} source={Icon.ArrowLeft} />
         </TouchableOpacity>
         <View style={styles.textHeaders}>
-          <Text style={styles.textHeader}>Đăng ký đồ án</Text>
+          <Text style={styles.textHeader}>Đề tài đồ án</Text>
         </View>
         <Image style={styles.iconHeader} source={Icon.FilterWhite} />
       </View>
@@ -59,7 +93,7 @@ const RegisterProject = ({navigation}: {navigation: any}) => {
           selectedTextStyle={styles.selectedTextStyle}
           inputSearchStyle={styles.inputSearchStyle}
           iconStyle={styles.iconStyle}
-          data={data}
+          data={teacher}
           search
           maxHeight={250}
           labelField="label"
@@ -165,7 +199,7 @@ const RegisterProject = ({navigation}: {navigation: any}) => {
                     </Text>
                     <View>
                       <View style={styles.infoLeture}>
-                        <Text style={styles.headerInfo}>- Khoa: </Text>
+                        /<Text style={styles.headerInfo}>- Khoa: </Text>
                         <Text style={styles.contents}>An Toàn thông tin</Text>
                       </View>
                       <View style={styles.infoLeture}>
@@ -184,41 +218,83 @@ const RegisterProject = ({navigation}: {navigation: any}) => {
           </View>
         </View>
       </Modal>
+      <Modal
+        animationType="none"
+        transparent={true}
+        visible={modalRegister}
+        onRequestClose={() => {
+          // Alert.alert('Modal has been closed.');
+          setModalRegister(!modalRegister);
+        }}>
+        <View style={styles.centeredView2}>
+          <View style={styles.modalView1}>
+            <View style={styles.headerModal2}>
+              <Image style={styles.iconClose} source={Icon.CloseWhite} />
+              <Pressable onPress={() => setModalRegister(!modalRegister)}>
+                <Image style={styles.iconClose} source={Icon.Close} />
+              </Pressable>
+            </View>
+            <View style={styles.headerModal3}>
+              <Image style={styles.iconClose} source={Icon.CloseWhite} />
+              <Text style={styles.titleModal}>Thông báo</Text>
+              <Image style={styles.iconClose} source={Icon.CloseWhite} />
+            </View>
+            <View style={styles.framecontentNoti}>
+              <Text style={styles.contentNoti}>
+                Bạn có chắc chắn muốn đăng ký đề tài này?
+              </Text>
+            </View>
+            <View style={styles.buttonLogout}>
+              <TouchableOpacity style={styles.buttonCancel}>
+                <Text style={styles.textButtonCancel}>Huỷ</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.buttonConfirm}
+                onPress={() => {
+                  registerTopic(selectTopic);
+                }}>
+                <Text style={styles.textButtonConfirm}>Đồng ý</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+      </Modal>
       <View>
-        <View style={styles.projectTopic}>
-          <Pressable
-            style={styles.informationTopic}
-            onPress={() => setModalVisible(true)}>
-            <Text style={styles.timeRegister}>
-              00:00 12/06/2024 - 23:59 14/06/2024
-            </Text>
-            <Text style={styles.nameTopic}>
-              Xây dựng hệ thống mạng xã hội KMA
-            </Text>
-            <Text style={styles.instructors}>Trần Anh Tú</Text>
-          </Pressable>
-          <View style={styles.buttonRegister}>
-            <TouchableOpacity>
-              <Text style={styles.buttonDK}>Đăng ký</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-        <View style={styles.projectTopic}>
-          <View style={styles.informationTopic}>
-            <Text style={styles.timeRegister}>
-              00:00 12/06/2024 - 23:59 14/06/2024
-            </Text>
-            <Text style={styles.nameTopic}>
-              Xây dựng hệ thống mạng xã hội KMA
-            </Text>
-            <Text style={styles.instructors}>Trần Anh Tú</Text>
-          </View>
-          <View style={styles.buttonRegister}>
-            <TouchableOpacity>
-              <Text style={styles.buttonDK}>Đăng ký</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
+        {topics.map((item, index) => (
+          <>
+            <View style={styles.projectTopic}>
+              <View style={styles.informationTopic}>
+                <Text style={styles.timeRegister}>{item.date}</Text>
+                <Text style={styles.nameTopic}>{item.name}</Text>
+                <Text style={styles.instructors}>{item.teacherName}</Text>
+              </View>
+
+              {item.is_active ? (
+                <View style={styles.buttonRegister}>
+                  <TouchableOpacity
+                    onPress={() => {
+                      setSelectTopic(item.id);
+                      setModalRegister(true);
+                    }}>
+                    <Text style={styles.buttonDK}>Đăng ký</Text>
+                  </TouchableOpacity>
+                </View>
+              ) : item.is_register ? (
+                <View style={styles.buttonRegisterDisable}>
+                  <TouchableOpacity disabled={true}>
+                    <Text style={styles.buttonDK}>Đã đăng ký</Text>
+                  </TouchableOpacity>
+                </View>
+              ) : (
+                <View style={styles.buttonRegisterDisable}>
+                  <TouchableOpacity disabled={true}>
+                    <Text style={styles.buttonDK}>Đăng ký</Text>
+                  </TouchableOpacity>
+                </View>
+              )}
+            </View>
+          </>
+        ))}
       </View>
     </SafeAreaView>
   );

@@ -12,6 +12,8 @@ import {
 import React, {useState} from 'react';
 import styles from './styles';
 import {Icon} from '../../../assets/icons/icon';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {Screens} from '../../../router/ScreensName';
 
 const SettingScreen = ({navigation}: {navigation: any}) => {
   const [isEnabled, setIsEnabled] = useState(false);
@@ -19,6 +21,28 @@ const SettingScreen = ({navigation}: {navigation: any}) => {
   const [value, setValue] = useState('');
   const [isFocus, setIsFocus] = useState(false);
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+
+  const signOut = async () => {
+    await AsyncStorage.clear();
+    setModalVisible(false);
+    navigation.navigate(Screens.AuthenticationNavigator);
+  };
+
+  const [studentInfo, setStudentInfo] = React.useState({
+    name: '',
+    phone: '',
+    email: '',
+  });
+  const getStudentInfo = async () => {
+    try {
+      const fullName = await AsyncStorage.getItem('info');
+      return fullName;
+    } catch (error) {
+      return '';
+    }
+  };
+
+  getStudentInfo().then(res => setStudentInfo(res ? JSON.parse(res) : ''));
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
@@ -36,14 +60,14 @@ const SettingScreen = ({navigation}: {navigation: any}) => {
           />
         </View>
         <View style={styles.textInfo}>
-          <Text style={styles.nameSetting}>Mai Thị Quỳnh</Text>
+          <Text style={styles.nameSetting}>{studentInfo.name}</Text>
           <View style={styles.phone}>
             <Text style={styles.textNumber}>SĐT: </Text>
-            <Text style={styles.number}>0337645566</Text>
+            <Text style={styles.number}>{studentInfo.phone}</Text>
           </View>
           <View style={styles.email}>
             <Text style={styles.textEmail}>Email: </Text>
-            <Text style={styles.addEmail}>at170341@actvn.edu.vn</Text>
+            <Text style={styles.addEmail}>{studentInfo.email}</Text>
           </View>
         </View>
         <View />
@@ -114,7 +138,9 @@ const SettingScreen = ({navigation}: {navigation: any}) => {
                 <TouchableOpacity style={styles.buttonCancel}>
                   <Text style={styles.textButtonCancel}>Huỷ</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.buttonConfirm}>
+                <TouchableOpacity
+                  style={styles.buttonConfirm}
+                  onPress={signOut}>
                   <Text style={styles.textButtonConfirm}>Đồng ý</Text>
                 </TouchableOpacity>
               </View>

@@ -245,6 +245,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#CF0016',
     borderRadius: 10,
   },
+  buttonRegisterDisable: {
+    padding: 10,
+    backgroundColor: '#404040',
+    borderRadius: 10,
+  },
   buttonDK: {
     fontSize: 14,
     color: '#FFFFFF',
@@ -418,6 +423,88 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     paddingVertical: 3,
     color: '#555555',
+  },
+
+  centeredView2: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
+    backgroundColor: 'rgba(0 0 0 / 0.4)',
+  },
+  modalView1: {
+    backgroundColor: 'white',
+    width: '90%',
+    height: '29%',
+    borderRadius: 15,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+    justifyContent: 'center',
+  },
+  headerModal2: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+
+    paddingLeft: 15,
+    paddingRight: 15,
+  },
+  headerModal3: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  framecontentNoti: {
+    width: '100%',
+    padding: 30,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  contentNoti: {
+    fontSize: 16,
+    color: '#444444',
+    justifyContent: 'center',
+    alignItems: 'center',
+    textAlign: 'center',
+  },
+  buttonLogout: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingLeft: 30,
+    paddingRight: 30,
+  },
+  buttonCancel: {
+    width: 140,
+    borderColor: '#CF0016',
+    borderWidth: 2,
+    padding: 10,
+    borderRadius: 10,
+  },
+  textButtonCancel: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    color: '#CF0016',
+  },
+  buttonConfirm: {
+    width: 140,
+    borderColor: '#CF0016',
+    backgroundColor: '#CF0016',
+    borderWidth: 2,
+    padding: 10,
+    borderRadius: 10,
+  },
+  textButtonConfirm: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    color: 'white',
   },
 });
 

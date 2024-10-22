@@ -7,7 +7,7 @@ import {Icon} from '../../../assets/icons/icon';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 // import LinearGradient from 'react-native-linear-gradient';
 
-const HomeScreen = ({navigation}: {navigation: any}) => {
+const HomeScreenTeacher = ({navigation}: {navigation: any}) => {
   const [studentInfo, setStudentInfo] = React.useState({
     name: '',
     code: '',
@@ -57,7 +57,7 @@ const HomeScreen = ({navigation}: {navigation: any}) => {
             <Image style={styles.imgBanner} source={images.StudentHome} />
           </View>
         </View> */}
-        <Image style={styles.banner} source={images.Banner} />
+        <Image style={styles.banner} source={images.BannerTeacher} />
       </View>
       <View>
         <View style={styles.textComponent}>
@@ -72,65 +72,44 @@ const HomeScreen = ({navigation}: {navigation: any}) => {
               </View>
             </TouchableOpacity>
             <TouchableOpacity
-              onPress={() => navigation.navigate('StudyResult')}>
-              <View style={styles.item}>
-                <Image style={styles.itemImage} source={images.StudyResult} />
-                <Text style={styles.textItem}>Kết quả học tập</Text>
-              </View>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => navigation.navigate('ClassStudent')}>
-              <View style={styles.item}>
-                <Image style={styles.itemImage} source={images.ClassStudent} />
-                <Text style={styles.textItem}>Lớp sinh viên</Text>
-              </View>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => navigation.navigate('RegisterProject')}>
+              onPress={() => navigation.navigate('RegisterProjectTeacher')}>
               <View style={styles.item}>
                 <Image
                   style={styles.itemImage}
                   source={images.RegisterProject}
                 />
-                <Text style={styles.textItem}>Đăng ký đồ án</Text>
+                <Text style={styles.textItem}>Đề tài đồ án</Text>
               </View>
             </TouchableOpacity>
-          </View>
-          <View style={styles.items}>
             <TouchableOpacity
               onPress={() => navigation.navigate('RegisterTopic')}>
               <View style={styles.item}>
                 <Image style={styles.itemImage} source={images.RegisterTopic} />
-                <Text style={styles.textItem}>Đăng ký chuyên đề</Text>
+                <Text style={styles.textItem}>Đề tài chuyên đề</Text>
               </View>
             </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => navigation.navigate('RegisterIntern')}>
-              <View style={styles.item}>
-                <Image
-                  style={styles.itemImage}
-                  source={images.RegisterIntern}
-                />
-                <Text style={styles.textItem}>Đăng ký thực tập</Text>
-              </View>
-            </TouchableOpacity>
-
             <View style={styles.item}>
               <Image style={styles.itemImage} source={images.Utilities} />
               <Text style={styles.textItem}>Tiện ích</Text>
             </View>
+          </View>
+          <View style={styles.items}>
             <View style={styles.item}>
               <Image style={styles.itemImage} source={images.FormOnline} />
               <Text style={styles.textItem}>Biểu mẫu online</Text>
             </View>
-          </View>
-          <View style={styles.items}>
             <TouchableOpacity onPress={() => navigation.navigate('Questions')}>
               <View style={styles.item}>
                 <Image style={styles.itemImage} source={images.Questions} />
                 <Text style={styles.textItem}>Câu hỏi</Text>
               </View>
             </TouchableOpacity>
+            <View style={styles.item}>
+              <Image style={styles.itemImage} source={images.IconWhite} />
+            </View>
+            <View style={styles.item}>
+              <Image style={styles.itemImage} source={images.IconWhite} />
+            </View>
           </View>
         </View>
       </View>
@@ -138,4 +117,4 @@ const HomeScreen = ({navigation}: {navigation: any}) => {
   );
 };
 
-export default HomeScreen;
+export default HomeScreenTeacher;
