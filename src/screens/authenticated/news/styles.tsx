@@ -78,6 +78,7 @@ const styles = StyleSheet.create({
   avaStatus: {
     width: 45,
     height: 45,
+    borderRadius: 100
   },
   textInfo: {
     marginLeft: 10,
@@ -149,6 +150,13 @@ const styles = StyleSheet.create({
     fontSize: 13,
     color: '#444444',
     marginLeft: 5,
+  },
+
+  postImage: {
+    width: '100%',
+    height: 200,
+    // borderRadius: 8,
+    marginBottom: 8,
   },
 });
 

@@ -36,4 +36,6 @@ export enum Screens {
   Notification = 'Notification',
   DetailChat = 'DetailChat',
   Walkthrough = 'Walkthrough',
+  BottomSheet = 'BottomSheet',
+  DetailStatus = 'DetailStatus',
 }

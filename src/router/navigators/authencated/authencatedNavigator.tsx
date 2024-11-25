@@ -21,6 +21,7 @@ import Questions from '../../../screens/authenticated/home/question/question';
 import CreateNews from '../../../screens/authenticated/news/createNews/createnews';
 import Notification from '../../../screens/authenticated/home/notification/notification';
 import DetailChat from '../../../screens/authenticated/Chat/detailChat/detailChat';
+import DetailStatus from '../../../screens/authenticated/news/detailStatus/detailStatus';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import RegisterProjectTeacher from '../../../screens/authenticated/home/registerProject/registerProjectTeacher';
 const Tab = createBottomTabNavigator();
@@ -435,6 +436,11 @@ const AuthencatedNavigator = () => {
         component={DetailChat}
         options={{headerShown: false}}
       />
+      <Stack.Screen
+        name={Screens.DetailStatus}
+        component={DetailStatus}
+        options={{headerShown: false}}
+      />
     </Stack.Navigator>
   ) : (
     <Stack.Navigator>
@@ -496,6 +502,11 @@ const AuthencatedNavigator = () => {
       <Stack.Screen
         name={Screens.DetailChat}
         component={DetailChat}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name={Screens.DetailStatus}
+        component={DetailStatus}
         options={{headerShown: false}}
       />
     </Stack.Navigator>

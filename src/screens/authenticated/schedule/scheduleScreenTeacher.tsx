@@ -182,7 +182,7 @@ const ScheduleScreenTeacher = () => {
       </View>
       {/* <BottomFiller/> */}
       <Modal
-        animationType="none"
+        animationType="slide"
         transparent={true}
         visible={modalVisible}
         onRequestClose={() => {

@@ -28,4 +28,6 @@ export const images = {
   Office: require('./office.png'),
   BannerTeacher: require('./bannerTeacher.png'),
   IconWhite: require('./iconWhite.png'),
+  Checkbox: require('./checkbox2.png'),
+  Checkout: require('./checkout.png')
 };
