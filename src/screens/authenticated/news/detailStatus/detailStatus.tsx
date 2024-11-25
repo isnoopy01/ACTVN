@@ -7,6 +7,7 @@ import {
   TextInput,
   TouchableOpacity,
   Image,
+  ScrollView,
 } from 'react-native';
 import React, {useState} from 'react';
 import {Icon} from '../../../../assets/icons/icon';
@@ -61,6 +62,7 @@ const DetailStatus = ({route}) => {
         <View style={styles.Status}>
           <Text style={styles.contentStatus}>{post.content}</Text>
         </View>
+        <ScrollView></ScrollView>
         {post.image && (
           <Image style={styles.postImage} source={{uri: post.image}} />
         )}
@@ -98,9 +100,9 @@ const DetailStatus = ({route}) => {
             </View>
           </View>
         )}
-        ListHeaderComponent={() => (
-          <Text style={styles.commentText}>Bình luận</Text>
-        )}
+        // ListHeaderComponent={() => (
+        //   <Text style={styles.commentText}>Bình luận</Text>
+        // )}
       />
 
       {/* Ô nhập bình luận */}
@@ -112,7 +114,7 @@ const DetailStatus = ({route}) => {
           style={styles.input}
         />
         <TouchableOpacity onPress={handleAddComment} style={styles.button}>
-          <Text>Gửi</Text>
+          <Image style={styles.buttonSend} source={Icon.Sent}/>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
@@ -123,10 +125,10 @@ export default DetailStatus;
 
 const styles = StyleSheet.create({
   container: {flex: 1, backgroundColor: '#fff'},
-  postDetails: {borderBottomWidth: 1, borderBottomColor: '#ddd'},
+  postDetails: {borderBottomWidth: 1, borderBottomColor: '#ddd', marginBottom: 20},
   content: {fontSize: 16, marginBottom: 8},
   commentList: {flex: 1, padding: 16},
-  comment: {marginBottom: 8},
+//   comment: {marginBottom: 8},
   user: {fontWeight: 'bold'},
   commentItem: {
     flexDirection: 'row',
@@ -140,16 +142,23 @@ const styles = StyleSheet.create({
   commentText: {fontSize: 14},
   inputContainer: {
     flexDirection: 'row',
-    padding: 16,
-    borderTopWidth: 1,
+    paddingLeft: 20,
+    paddingRight: 20,
+    paddingTop: 10,
+    paddingBottom: 5,
+    borderTopWidth: 0.5,
     borderTopColor: '#ddd',
   },
   input: {
     flex: 1,
-    borderWidth: 1,
-    borderColor: '#ddd',
-    borderRadius: 20,
-    padding: 8,
+    borderRadius: 25,
+    paddingTop: 15,
+    paddingBottom: 15,
+    paddingLeft: 15,
+    paddingRight: 15,
+    backgroundColor: '#F8F8F7',
+    fontSize: 15,
+    color: '#444'
   },
   button: {marginLeft: 8, alignItems: 'center', justifyContent: 'center'},
   posts: {
@@ -265,6 +274,13 @@ const styles = StyleSheet.create({
   },
   infoPersonComment: {
     flexDirection: 'column',
-    marginLeft: 10
+    marginLeft: 10,
+    backgroundColor: '#F0F2F5',
+    padding: 10,
+    borderRadius: 10,
   },
+  buttonSend: {
+    width: 25,
+    height: 25
+  }
 });

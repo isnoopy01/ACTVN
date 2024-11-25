@@ -40,20 +40,21 @@ const styles = StyleSheet.create({
   },
   scheduleItem: {
     backgroundColor: '#f0f0f0',
-    margin: 10,
+    marginTop: 10,
+    marginLeft: 20,
+    marginRight: 20,
     borderRadius: 10,
     flexDirection: 'row',
-    alignItems: 'center',
-    padding: 10,
+    alignItems: 'flex-start',
+    padding: 15
   },
   selectedScheduleItem: {
-    backgroundColor: '#E6F7FF',
-    borderColor: '#1890FF',
-    borderWidth: 2,
+    backgroundColor: '#FFEAEB',
   },
   scheduleTime: {
     marginRight: 15,
     justifyContent: 'center',
+    alignItems: 'center'
   },
   scheduleDetails: {
     flex: 1,

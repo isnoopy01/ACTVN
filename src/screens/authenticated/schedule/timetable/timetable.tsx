@@ -97,9 +97,9 @@ const TimeTable = () => {
         selectedDate === item.date ? styles.selectedScheduleItem : null,
       ]}>
       <View style={styles.scheduleTime}>
-        <Text>{item.timeStart}</Text>
+        <Text style={{fontSize: 13, color: '#000000'}}>{item.timeStart}</Text>
         <Text>|</Text>
-        <Text>{item.timeEnd}</Text>
+        <Text style={{fontSize: 13, color: '#000000'}}>{item.timeEnd}</Text>
       </View>
       <View style={styles.scheduleDetails}>
         <Text style={styles.subjectText}>

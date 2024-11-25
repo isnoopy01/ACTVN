@@ -85,6 +85,13 @@ const SettingScreen = ({navigation}: {navigation: any}) => {
         <View style={styles.feature}>
           <View style={styles.infoFeature}>
             <Image style={styles.iconstart} source={Icon.ForgotPass} />
+            <Text style={styles.textFeature}>Đổi mật khẩu</Text>
+          </View>
+          <Image style={styles.iconend} source={Icon.ChevronRight} />
+        </View>
+        <View style={styles.feature}>
+          <View style={styles.infoFeature}>
+            <Image style={styles.iconstart} source={Icon.ForgotPass} />
             <Text style={styles.textFeature}>Hoạt động của bạn</Text>
           </View>
           <Image style={styles.iconend} source={Icon.ChevronRight} />
